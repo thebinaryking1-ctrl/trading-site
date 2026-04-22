@@ -6,38 +6,41 @@
     <title>GAUTAM CHAUHAN | PRO VIP TERMINAL</title>
     <style>
         :root { --gold: #f0b90b; --accent: #00ff88; --dark-bg: #0d1117; --card-bg: rgba(22, 27, 34, 0.9); --border: #30363d; --sell: #ff4a4a; --buy: #00ff88; }
-        body { font-family: 'Inter', sans-serif; background: radial-gradient(circle at top, #161b22, #0d1117); color: #c9d1d9; margin: 0; padding: 0; }
-        .container { max-width: 550px; margin: auto; padding: 15px; }
+        body { font-family: 'Inter', sans-serif; background: radial-gradient(circle at top, #161b22, #0d1117); color: #c9d1d9; margin: 0; padding: 0; text-align: center; }
+        .container { max-width: 500px; margin: auto; padding: 15px; }
         
-        .header { text-align: center; padding: 20px 0; }
-        .header h1 { color: white; font-size: 24px; margin: 0; font-weight: 800; background: linear-gradient(to right, #fff, var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .header h1 { color: white; font-size: 26px; margin: 20px 0 10px; font-weight: 800; background: linear-gradient(to right, #fff, var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-        /* VIP TERMINAL - NOW AT TOP */
-        .terminal { background: #000; border: 2px solid var(--gold); border-radius: 20px; padding: 25px 15px; margin-bottom: 25px; position: relative; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .lock-screen { position: absolute; inset: 0; background: rgba(0,0,0,0.95); z-index: 100; border-radius: 18px; display: flex; flex-direction: column; justify-content: center; align-items: center; }
-        input { background: #0d1117; border: 1px solid #30363d; color: #fff; padding: 10px; width: 60%; border-radius: 8px; margin: 10px 0; text-align: center; font-size: 16px; }
-        #clock { font-size: 28px; color: var(--gold); font-weight: bold; font-family: monospace; letter-spacing: 2px; margin-bottom: 15px; }
+        /* VIP TERMINAL BOX */
+        .terminal { background: #000; border: 2px solid var(--gold); border-radius: 20px; padding: 25px 15px; margin-bottom: 20px; position: relative; overflow: hidden; box-shadow: 0 0 20px rgba(240,185,11,0.2); }
+        .lock-screen { position: absolute; inset: 0; background: rgba(0,0,0,0.96); z-index: 100; border-radius: 18px; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; }
+        
+        /* INSTRUCTIONS INSIDE BOX */
+        .instr-text { font-size: 13px; color: #ccc; margin-bottom: 15px; line-height: 1.4; }
+        .instr-step { color: var(--gold); font-weight: bold; }
+        
+        input { background: #161b22; border: 1px solid var(--border); color: #fff; padding: 12px; width: 80%; border-radius: 10px; margin: 10px 0; text-align: center; font-size: 16px; }
+        #clock { font-size: 30px; color: var(--gold); font-weight: bold; font-family: monospace; margin-bottom: 15px; text-shadow: 0 0 10px rgba(240,185,11,0.5); }
 
-        /* PROFESSIONAL SIGNAL BOX */
-        .sig-display { background: #161b22; border: 1px solid #333; border-radius: 15px; padding: 20px; margin: 10px auto; width: 90%; }
-        #pair { font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: #8b949e; margin-bottom: 5px; }
-        #dir { font-size: 32px; font-weight: 900; margin: 5px 0; }
-        #timer { font-size: 12px; color: var(--gold); font-weight: bold; background: rgba(240,185,11,0.1); padding: 4px 10px; border-radius: 20px; display: inline-block; }
+        /* SIGNAL DASHBOARD */
+        .sig-card { background: linear-gradient(145deg, #1c2128, #11161d); border: 1px solid #333; border-radius: 15px; padding: 25px; margin: 10px auto; width: 85%; }
+        #pair { font-size: 14px; color: #8b949e; letter-spacing: 2px; margin-bottom: 8px; }
+        #dir { font-size: 38px; font-weight: 900; margin: 10px 0; }
+        #timer { font-size: 12px; color: var(--gold); background: rgba(240,185,11,0.1); padding: 5px 15px; border-radius: 20px; display: inline-block; font-weight: bold; }
 
         /* COMPACT BUTTONS */
-        .btn-wrap { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-bottom: 25px; }
-        .btn { display: inline-block; width: 85%; padding: 12px; border-radius: 8px; text-decoration: none; font-weight: 700; text-align: center; font-size: 14px; border: none; cursor: pointer; transition: 0.3s; }
+        .btn { display: block; width: 90%; margin: 10px auto; padding: 14px; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 14px; border: none; cursor: pointer; transition: 0.2s; }
         .btn-gold { background: var(--gold); color: #000; }
         .btn-blue { background: #229ED9; color: #fff; }
-        .btn:hover { transform: scale(1.02); }
 
-        /* STRATEGY SECTION */
-        .strat-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 15px; margin-bottom: 12px; border-left: 4px solid var(--gold); }
-        .strat-title { font-weight: 800; font-size: 15px; display: block; margin-bottom: 5px; color: #fff; }
-        .strat-detail { font-size: 13px; line-height: 1.5; color: #acbac7; }
+        /* STRATEGY CARDS */
+        .strat-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 15px; margin-bottom: 12px; text-align: left; border-left: 4px solid var(--gold); }
+        .strat-title { font-weight: 800; font-size: 15px; color: #fff; display: block; margin-bottom: 5px; }
+        .strat-detail { font-size: 13px; color: #acbac7; }
         .action-up { color: var(--buy); font-weight: bold; }
         .action-down { color: var(--sell); font-weight: bold; }
-        .blur { filter: blur(15px); pointer-events: none; }
+
+        footer { margin-top: 30px; padding-bottom: 30px; border-top: 1px solid #333; padding-top: 20px; }
     </style>
 </head>
 <body>
@@ -51,27 +54,31 @@
         <div id="clock">00:00:00</div>
         
         <div id="lockUI" class="lock-screen">
-            <span style="font-size: 35px;">🔒</span>
-            <p style="font-weight: bold; margin: 5px 0; font-size: 14px;">PRO TERMINAL LOCKED</p>
+            <div style="font-size: 30px; margin-bottom: 10px;">🔐</div>
+            <p style="font-weight: bold; color: white; margin-bottom: 10px;">VIP ACCESS REQUIREMENTS</p>
+            <div class="instr-text">
+                1. <span class="instr-step">Account:</span> Create via Step 01 below.<br>
+                2. <span class="instr-step">Deposit:</span> Minimum $50 to your wallet.<br>
+                3. <span class="instr-step">Verification:</span> Send Trader ID on Telegram.<br>
+                <i style="color: #8b949e; font-size: 11px;">Password enter karne ke baad hi signals dikhenge.</i>
+            </div>
             <input type="password" id="pass" placeholder="Enter VIP Key">
-            <button class="btn btn-gold" onclick="unlock()" style="width: 50%; padding: 8px;">UNLOCK</button>
+            <button class="btn btn-gold" onclick="unlock()" style="width: 60%;">UNLOCK LIVE SIGNALS</button>
         </div>
 
-        <div id="sigBox" class="blur">
-            <div class="sig-display">
-                <div id="pair">ANALYZING MARKET...</div>
+        <div id="sigBox" style="filter: blur(20px); pointer-events: none;">
+            <div class="sig-card">
+                <div id="pair">EUR/USD (OTC)</div>
                 <div id="dir">READY</div>
-                <div id="timer">SYNCING WITH QUOTEX</div>
+                <div id="timer">SYNCING...</div>
             </div>
         </div>
     </div>
 
-    <div class="btn-wrap">
-        <a href="https://broker-qx.pro/sign-up/?lid=2091482" class="btn btn-gold">1. CREATE QUOTEX ACCOUNT</a>
-        <a href="https://t.me/Quotextrader004" class="btn btn-blue">2. SEND ID FOR VIP KEY</a>
-    </div>
+    <a href="https://broker-qx.pro/sign-up/?lid=2091482" class="btn btn-gold">STEP 01: CREATE QUOTEX ACCOUNT</a>
+    <a href="https://t.me/Quotextrader004" class="btn btn-blue">STEP 02: CONTACT FOR PASSWORD</a>
 
-    <div class="strategy-section">
+    <div style="margin-top: 25px;">
         <div class="strat-card"><span class="strat-title">🟥 KELTNER REVERSAL</span>
             <div class="strat-detail">• <span class="action-down">Sell:</span> Green candle upper line out -> Next Down.<br>• <span class="action-up">Buy:</span> Red candle lower line out -> Next Up.</div>
         </div>
@@ -83,6 +90,10 @@
         </div>
     </div>
 
+    <footer>
+        <p style="font-size: 13px; color: var(--gold); font-weight: bold;">Note: Humara VIP Group Join Karein aur 95% Accuracy ke saath daily profit banayein.</p>
+        <p style="font-size: 10px; color: #555;">© 2026 GAUTAM CHAUHAN | TRADING HUB</p>
+    </footer>
 </div>
 
 <script>
@@ -92,15 +103,16 @@
             const time = now.getHours().toString().padStart(2, '0') + ":" + now.getMinutes().toString().padStart(2, '0') + ":" + now.getSeconds().toString().padStart(2, '0');
             document.getElementById('clock').innerText = time;
             if(now.getSeconds() === 0 && document.getElementById('lockUI').style.display === 'none') { newSignal(); }
-            if(document.getElementById('lockUI').style.display === 'none') { document.getElementById('timer').innerText = "NEXT UPDATE IN: " + (60 - now.getSeconds()) + "s"; }
+            if(document.getElementById('lockUI').style.display === 'none') { document.getElementById('timer').innerText = "NEXT SIGNAL IN: " + (60 - now.getSeconds()) + "s"; }
         }, 1000);
     }
     function unlock() {
-        if(document.getElementById('pass').value === "GautamVIP") {
+        // Updated Password here
+        if(document.getElementById('pass').value === "GautamVIP01") {
             document.getElementById('lockUI').style.display = 'none';
-            document.getElementById('sigBox').classList.remove('blur');
+            document.getElementById('sigBox').style.filter = 'none';
             newSignal();
-        } else { alert("Invalid Key!"); }
+        } else { alert("Error: Please complete Step 1 & 2 first!"); }
     }
     function newSignal() {
         const pairs = ["EUR/USD (OTC)", "USD/INR (OTC)", "GBP/JPY (OTC)", "AUD/CAD (OTC)"];
