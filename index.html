@@ -3,173 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GAUTAM CHAUHAN | LUXURY TRADING VIP</title>
+    <title>GAUTAM CHAUHAN | VIP STRATEGY HUB</title>
     <style>
-        :root { 
-            --gold: #f0b90b; 
-            --accent: #00ff88; 
-            --dark-bg: #0d1117; 
-            --card-bg: rgba(22, 27, 34, 0.8);
-            --border: #30363d;
-        }
-        body { 
-            font-family: 'Inter', -apple-system, sans-serif; 
-            background: radial-gradient(circle at top, #161b22, #0d1117); 
-            color: #c9d1d9; margin: 0; padding: 0; line-height: 1.6;
-        }
-        .container { max-width: 600px; margin: auto; padding: 25px; }
-
-        /* Header Branding */
-        .branding { padding: 40px 0; text-align: center; }
-        .branding h1 { 
-            color: white; font-size: 32px; margin: 0; font-weight: 800; 
-            text-transform: uppercase; letter-spacing: 2px;
-            background: linear-gradient(to right, #fff, var(--gold));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
-
-        /* Education Glass Card */
-        .glass-card { 
-            background: var(--card-bg); backdrop-filter: blur(10px); 
-            border: 1px solid var(--border); border-radius: 20px; 
-            padding: 20px; margin-bottom: 25px; 
-        }
-        .candle-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        .c-item { background: rgba(255,255,255,0.03); padding: 15px; border-radius: 12px; border: 1px solid #333; }
-        .c-item b { display: block; margin-top: 5px; color: var(--gold); }
-
-        /* Step Section */
-        .step-box { 
-            background: linear-gradient(145deg, #1c2128, #11161d);
-            border: 1px solid var(--border); border-radius: 15px; 
-            padding: 20px; margin-bottom: 15px; position: relative; overflow: hidden;
-        }
-        .step-box::before {
-            content: ""; position: absolute; left: 0; top: 0; height: 100%; 
-            width: 4px; background: var(--accent);
-        }
-
-        /* High-End Buttons */
-        .btn { 
-            display: block; width: 100%; padding: 16px; border-radius: 12px; 
-            text-decoration: none; font-weight: 700; font-size: 16px; 
-            transition: 0.3s; margin-top: 15px; border: none; cursor: pointer;
-            box-sizing: border-box;
-        }
-        .btn-gold { background: var(--gold); color: #000; box-shadow: 0 4px 15px rgba(240,185,11,0.2); }
-        .btn-blue { background: #229ED9; color: #fff; box-shadow: 0 4px 15px rgba(34,158,217,0.2); }
-        .btn-gold:hover, .btn-blue:hover { transform: translateY(-2px); opacity: 0.9; }
-
-        /* VIP SIGNAL AREA */
-        .signal-portal { 
-            background: #000; border: 2px solid var(--gold); 
-            border-radius: 25px; padding: 40px 20px; margin-top: 40px;
-            position: relative; text-align: center;
-        }
-        .lock-overlay { 
-            position: absolute; inset: 0; background: rgba(0,0,0,0.85); 
-            z-index: 100; border-radius: 23px; display: flex; 
-            flex-direction: column; justify-content: center; align-items: center; 
-        }
-        input { 
-            background: #161b22; border: 1px solid #30363d; color: #fff; 
-            padding: 15px; width: 80%; border-radius: 10px; margin: 15px 0; text-align: center;
-        }
-        #clock { font-size: 36px; color: var(--gold); font-weight: bold; letter-spacing: 3px; margin-bottom: 10px; }
-        .blur-text { filter: blur(12px); user-select: none; }
+        :root { --gold: #f0b90b; --accent: #00ff88; --dark-bg: #0d1117; --card-bg: rgba(22, 27, 34, 0.9); --border: #30363d; --sell: #ff4a4a; --buy: #00ff88; }
+        body { font-family: 'Inter', sans-serif; background: radial-gradient(circle at top, #161b22, #0d1117); color: #c9d1d9; margin: 0; padding: 0; }
+        .container { max-width: 650px; margin: auto; padding: 20px; }
+        .branding { text-align: center; padding: 30px 0; }
+        .branding h1 { color: white; font-size: 28px; margin: 0; font-weight: 800; background: linear-gradient(to right, #fff, var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .strat-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 15px; padding: 20px; margin-bottom: 15px; text-align: left; border-left: 5px solid var(--gold); }
+        .strat-title { font-weight: 800; font-size: 18px; margin-bottom: 10px; display: block; }
+        .strat-detail { font-size: 14px; line-height: 1.6; color: #acbac7; }
+        .action-up { color: var(--buy); font-weight: bold; }
+        .action-down { color: var(--sell); font-weight: bold; }
+        .step-box { background: #1c2128; border: 1px solid var(--border); border-radius: 12px; padding: 15px; margin-bottom: 10px; }
+        .btn { display: block; width: 100%; padding: 15px; border-radius: 10px; text-decoration: none; font-weight: 700; text-align: center; margin-top: 10px; border:none; cursor:pointer; }
+        .btn-gold { background: var(--gold); color: #000; }
+        .btn-blue { background: #229ED9; color: #fff; }
+        .terminal { background: #000; border: 2px solid var(--gold); border-radius: 20px; padding: 30px 15px; margin-top: 30px; position: relative; text-align: center; }
+        .lock-screen { position: absolute; inset: 0; background: rgba(0,0,0,0.92); z-index: 100; border-radius: 18px; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        input { background: #0d1117; border: 1px solid #30363d; color: #fff; padding: 12px; width: 70%; border-radius: 8px; margin: 15px 0; text-align: center; }
+        #clock { font-size: 32px; color: var(--gold); font-weight: bold; margin-bottom: 10px; }
+        .blur { filter: blur(15px); }
     </style>
 </head>
 <body>
 
 <div class="container">
     <div class="branding">
-        <h1>Gautam Chauhan VIP</h1>
-        <p style="font-size: 13px; color: #8b949e;">Next-Gen Trading Intelligence</p>
+        <h1>GAUTAM CHAUHAN VIP</h1>
+        <p style="font-size: 12px; color: #8b949e;">Market Strategies & Live Signals</p>
     </div>
 
-    <div class="glass-card">
-        <h3 style="margin-top:0; color: #fff;">📊 Strategy Manual</h3>
-        <div class="candle-grid">
-            <div class="c-item"><span style="font-size:30px">🔨</span> <b>Hammer</b> <small>Bullish Reversal</small></div>
-            <div class="c-item"><span style="font-size:30px">☄️</span> <b>Shooting Star</b> <small>Bearish Setup</small></div>
+    <div class="strategy-section">
+        <h3 style="color: #fff; text-align: center;">📊 VIP TRADING STRATEGIES</h3>
+
+        <div class="strat-card" style="border-left-color: #ff4a4a;">
+            <span class="strat-title">🟥 STRATEGY 1: KELTNER REVERSAL</span>
+            <div class="strat-detail">
+                • <span class="action-down">Sell (Down):</span> Green candle upper line ke bahar close ho -> Next Down.<br>
+                • <span class="action-up">Buy (Up):</span> Red candle lower line ke bahar close ho -> Next Up.
+            </div>
+        </div>
+
+        <div class="strat-card" style="border-left-color: #00ff88;">
+            <span class="strat-title">🟩 STRATEGY 2: DOJI BREAKOUT</span>
+            <div class="strat-detail">
+                • <b>Setup:</b> Up-trend mein Doji bane.<br>
+                • <span class="action-up">Entry:</span> Agli Green candle Doji ki Upper Wick ke upar close ho -> Next Up.
+            </div>
+        </div>
+
+        <div class="strat-card" style="border-left-color: #229ED9;">
+            <span class="strat-title">🟦 STRATEGY 3: ZIGZAG MOMENTUM</span>
+            <div class="strat-detail">
+                • <b>Rule:</b> Jab ZigZag line ek naya point (v-shape) banaye:<br>
+                • <span class="action-down">Sell (Down):</span> Naye point ke baad agar pehli candle RED bane -> Next Down.<br>
+                • <span class="action-up">Buy (Up):</span> Naye point ke baad agar pehli candle GREEN bane -> Next Up.
+            </div>
         </div>
     </div>
 
     <div class="step-box">
-        <h4 style="margin:0; color: var(--gold);">Step 01: Ecosystem Access</h4>
-        <p style="font-size: 14px;">Hamare VIP server se connect hone ke liye naya account banayein.</p>
+        <b style="color: var(--gold);">Step 01: Ecosystem Access</b>
         <a href="https://broker-qx.pro/sign-up/?lid=2091482" class="btn btn-gold">CREATE QUOTEX ACCOUNT</a>
     </div>
 
     <div class="step-box">
-        <h4 style="margin:0; color: var(--accent);">Step 02: Fund & Verify</h4>
-        <p style="font-size: 14px;">$30 ya zyada deposit karke apni Trader ID niche bhein.</p>
-        <a href="https://t.me/Quotextrader004" class="btn btn-blue">SEND ID FOR VERIFICATION</a>
+        <b style="color: var(--accent);">Step 02: Verification</b>
+        <a href="https://t.me/Quotextrader004" class="btn btn-blue">SEND ID FOR VIP KEY</a>
     </div>
 
-    <div class="signal-portal">
+    <div class="terminal">
         <div id="clock">00:00:00</div>
-        
-        <div id="lockUI" class="lock-overlay">
-            <span style="font-size: 40px; margin-bottom: 10px;">🛡️</span>
-            <p style="margin:0; font-weight: bold;">VIP TERMINAL LOCKED</p>
-            <input type="password" id="vipKey" placeholder="Enter License Key">
-            <button class="btn btn-gold" onclick="unlock()" style="width: 70%; padding: 12px;">UNLOCK SYSTEM</button>
+        <div id="lockUI" class="lock-screen">
+            <span style="font-size: 30px;">🛡️</span>
+            <p style="font-weight: bold; margin: 10px 0;">VIP TERMINAL LOCKED</p>
+            <input type="password" id="pass" placeholder="Enter VIP License Key">
+            <button class="btn btn-gold" onclick="unlock()" style="width: 60%; padding: 10px;">UNLOCK NOW</button>
         </div>
-
-        <div id="signalContent" class="blur-text">
-            <div id="pairName" style="font-size: 20px; color: var(--accent);">EUR/USD (OTC)</div>
-            <div id="direction" style="font-size: 48px; font-weight: 900; margin: 10px 0;">UP CALL</div>
-            <div id="timer" style="color: #8b949e;">Analyzing Market...</div>
+        <div id="sigBox" class="blur">
+            <div id="pair" style="font-size: 18px; color: var(--accent);">EUR/USD (OTC)</div>
+            <div id="dir" style="font-size: 40px; font-weight: 900; margin: 10px 0;">WAIT...</div>
+            <div id="timer" style="color: #8b949e;">Analyzing...</div>
         </div>
     </div>
-
-    <footer style="margin-top: 50px; opacity: 0.5; font-size: 11px;">
-        © 2026 GAUTAM CHAUHAN | TRADING ACADEMY PRO
-    </footer>
 </div>
 
 <script>
-    function updateLiveSync() {
+    function startSync() {
         setInterval(() => {
             const now = new Date();
-            const h = now.getHours().toString().padStart(2, '0');
-            const m = now.getMinutes().toString().padStart(2, '0');
-            const s = now.getSeconds().toString().padStart(2, '0');
-            document.getElementById('clock').innerText = `${h}:${m}:${s}`;
-
-            if(now.getSeconds() === 0 && document.getElementById('lockUI').style.display === 'none') {
-                triggerSignal();
-            }
-
-            if(document.getElementById('lockUI').style.display === 'none') {
-                document.getElementById('timer').innerText = "Update in: " + (60 - now.getSeconds()) + "s";
-            }
+            const time = now.getHours().toString().padStart(2, '0') + ":" + 
+                         now.getMinutes().toString().padStart(2, '0') + ":" + 
+                         now.getSeconds().toString().padStart(2, '0');
+            document.getElementById('clock').innerText = time;
+            if(now.getSeconds() === 0 && document.getElementById('lockUI').style.display === 'none') { newSignal(); }
+            if(document.getElementById('lockUI').style.display === 'none') { document.getElementById('timer').innerText = "Update in: " + (60 - now.getSeconds()) + "s"; }
         }, 1000);
     }
-
     function unlock() {
-        const key = document.getElementById('vipKey').value;
-        if(key === "GautamVIP") {
+        if(document.getElementById('pass').value === "GautamVIP") {
             document.getElementById('lockUI').style.display = 'none';
-            document.getElementById('signalContent').classList.remove('blur-text');
-            triggerSignal();
-        } else {
-            alert("Invalid License Key! Contact Admin.");
-        }
+            document.getElementById('sigBox').classList.remove('blur');
+            newSignal();
+        } else { alert("Invalid Key!"); }
     }
-
-    function triggerSignal() {
-        const assets = ["EUR/USD (OTC)", "GBP/JPY (OTC)", "USD/INR (OTC)", "AUD/CAD (OTC)"];
+    function newSignal() {
+        const pairs = ["EUR/USD (OTC)", "USD/INR (OTC)", "GBP/JPY (OTC)", "AUD/CAD (OTC)"];
         const dirs = ["CALL UP ⬆️", "PUT DOWN ⬇️"];
-        document.getElementById('pairName').innerText = assets[Math.floor(Math.random()*assets.length)];
-        const move = dirs[Math.floor(Math.random()*dirs.length)];
-        const dEl = document.getElementById('direction');
-        dEl.innerText = move;
-        dEl.style.color = move.includes("UP") ? "#00ff88" : "#ff4a4a";
+        document.getElementById('pair').innerText = pairs[Math.floor(Math.random()*pairs.length)];
+        const res = dirs[Math.floor(Math.random()*dirs.length)];
+        const el = document.getElementById('dir');
+        el.innerText = res;
+        el.style.color = res.includes("UP") ? "#00ff88" : "#ff4a4a";
     }
-
-    updateLiveSync();
+    startSync();
 </script>
 
 </body>
