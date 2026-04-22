@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,11 +9,15 @@
         body { font-family: 'Inter', sans-serif; background: radial-gradient(circle at top, #161b22, #0d1117); color: #c9d1d9; margin: 0; padding: 0; text-align: center; }
         .container { max-width: 500px; margin: auto; padding: 15px; }
         
-        .header h1 { color: white; font-size: 24px; margin: 20px 0 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+        /* Language Toggle Button */
+        .lang-switch { display: flex; justify-content: flex-end; margin-bottom: 10px; }
+        .lang-btn { background: #1c2128; border: 1px solid var(--border); color: var(--gold); padding: 5px 12px; border-radius: 5px; cursor: pointer; font-weight: bold; font-size: 12px; }
+
+        .header h1 { color: white; font-size: 24px; margin: 10px 0; font-weight: 800; text-transform: uppercase; }
 
         .terminal { background: #000; border: 2px solid var(--gold); border-radius: 20px; min-height: 400px; margin-bottom: 20px; position: relative; overflow: hidden; box-shadow: 0 0 25px rgba(240,185,11,0.3); }
-        .lock-screen { position: absolute; inset: 0; background: rgba(0,0,0,0.96); z-index: 100; border-radius: 18px; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 25px; gap: 15px; }
-        .lock-container { font-size: 55px; line-height: 1; margin-bottom: 5px; height: 65px; display: flex; align-items: center; }
+        .lock-screen { position: absolute; inset: 0; background: rgba(0,0,0,0.96); z-index: 100; border-radius: 18px; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 25px; gap: 12px; }
+        .lock-container { font-size: 55px; height: 65px; display: flex; align-items: center; }
         
         .instr-text { font-size: 13px; color: #ccc; line-height: 1.6; }
         .instr-step { color: var(--gold); font-weight: bold; }
@@ -34,6 +38,10 @@
 <body>
 
 <div class="container">
+    <div class="lang-switch">
+        <button class="lang-btn" onclick="toggleLang()" id="langBtn">हिन्दी में देखें</button>
+    </div>
+
     <div class="header">
         <h1>GAUTAM CHAUHAN VIP SIGNAL</h1>
     </div>
@@ -43,38 +51,40 @@
         
         <div id="lockUI" class="lock-screen">
             <div class="lock-container">🔐</div>
-            <p style="font-weight: 800; color: white; margin: 0; letter-spacing: 1px;">VIP ACCESS REQUIRED</p>
-            <div class="instr-text">
-                1. <span class="instr-step">Create Account:</span> Step 01 par click karein.<br>
-                2. <span class="instr-step">Wallet Deposit:</span> Minimum $50 deposit karein.<br>
-                3. <span class="instr-step">Verification:</span> Telegram par Trader ID bhejein.<br>
-                <i style="color: #8b949e; font-size: 11px;">Password daalne ke baad Live Signals milna shuru honge.</i>
+            <p id="lockTitle" style="font-weight: 800; color: white; margin: 0;">VIP ACCESS REQUIRED</p>
+            
+            <div class="instr-text" id="instructions">
+                1. <span class="instr-step">Create Account:</span> Click Step 01 below.<br>
+                2. <span class="instr-step">Wallet Deposit:</span> Min. $50 deposit.<br>
+                3. <span class="instr-step">Verification:</span> Send Trader ID on Telegram.<br>
+                <i style="color: #8b949e; font-size: 11px;">Signals will appear after entering password.</i>
             </div>
+
             <input type="password" id="pass" placeholder="Enter VIP Key">
-            <button class="btn btn-gold" onclick="unlock()" style="width: 85%;">UNLOCK LIVE SIGNALS</button>
+            <button class="btn btn-gold" id="unlockBtn" onclick="unlock()" style="width: 85%;">UNLOCK LIVE SIGNALS</button>
         </div>
 
         <div id="sigBox" style="filter: blur(25px); pointer-events: none; padding-top: 60px;">
             <div style="background: #1c2128; padding: 25px; border-radius: 20px; width: 85%; margin: auto; border: 1px solid #333;">
-                <div style="font-size: 14px; color: #8b949e; letter-spacing: 2px;">EUR/USD (OTC)</div>
-                <div style="font-size: 35px; font-weight: 900; margin: 15px 0; color: var(--buy);">CALL UP ⬆️</div>
+                <div id="pairName" style="font-size: 14px; color: #8b949e;">EUR/USD (OTC)</div>
+                <div id="signalDir" style="font-size: 35px; font-weight: 900; margin: 15px 0; color: var(--buy);">CALL UP ⬆️</div>
             </div>
         </div>
     </div>
 
-    <a href="https://broker-qx.pro/sign-up/?lid=2091886" class="btn btn-gold">STEP 01: CREATE QUOTEX ACCOUNT</a>
-    <a href="https://t.me/Quotextrader004" class="btn btn-blue">STEP 02: CONTACT FOR PASSWORD</a>
+    <a href="https://broker-qx.pro/sign-up/?lid=2091886" class="btn btn-gold" id="step1Btn">STEP 01: CREATE QUOTEX ACCOUNT</a>
+    <a href="https://t.me/Quotextrader004" class="btn btn-blue" id="step2Btn">STEP 02: CONTACT FOR PASSWORD</a>
 
-    <div style="margin-top: 30px;">
-        <div class="strat-card"><b>🟥 KELTNER REVERSAL</b><br><span style="font-size: 13px; color: #acbac7;">High accuracy reversal signals for 1-min trades.</span></div>
-        <div class="strat-card" style="border-left-color: var(--accent);"><b>🟩 DOJI BREAKOUT</b><br><span style="font-size: 13px; color: #acbac7;">Professional price action strategy for safe entries.</span></div>
+    <div id="strategySection">
+        <div class="strat-card"><b id="s1t">🟥 KELTNER REVERSAL</b><br><span id="s1d" style="font-size: 13px; color: #acbac7;">High accuracy reversal signals for 1-min trades.</span></div>
+        <div class="strat-card" style="border-left-color: var(--accent);"><b id="s2t">🟩 DOJI BREAKOUT</b><br><span id="s2d" style="font-size: 13px; color: #acbac7;">Professional price action strategy for safe entries.</span></div>
     </div>
 
     <div class="profit-footer">
-        <div class="profit-text">
-            🚀 Aaj hi Quotex Account banayein aur humare Pro Bot Signals se daily $50 - $100 ka assured profit banayein!
+        <div class="profit-text" id="bottomNote">
+            🚀 Create Quotex Account today and make $50 - $100 assured daily profit with our Pro Bot Signals!
         </div>
-        <p style="color: #ccc; font-size: 12px; margin-top: 10px;">95% Accuracy + 24/7 Working Signals</p>
+        <p id="accuracyNote" style="color: #ccc; font-size: 12px; margin-top: 10px;">95% Accuracy + 24/7 Working Signals</p>
     </div>
 
     <footer>
@@ -83,17 +93,71 @@
 </div>
 
 <script>
+    let currentLang = 'en';
+
+    const translations = {
+        hi: {
+            langBtn: "English Website",
+            lockTitle: "VIP एक्सेस की आवश्यकता है",
+            instructions: `1. <span class="instr-step">खाता बनाएं:</span> नीचे Step 01 पर क्लिक करें।<br>2. <span class="instr-step">डिपॉजिट:</span> कम से कम $50 जमा करें।<br>3. <span class="instr-step">वेरिफिकेशन:</span> टेलीग्राम पर Trader ID भेजें।<br><i style="color: #8b949e; font-size: 11px;">पासवर्ड डालने के बाद सिग्नल्स दिखेंगे।</i>`,
+            unlockBtn: "सिग्नल्स अनलॉक करें",
+            step1: "STEP 01: QUOTEX अकाउंट बनाएं",
+            step2: "STEP 02: पासवर्ड के लिए संपर्क करें",
+            s1t: "🟥 केल्टनर रिवर्सल",
+            s1d: "1-मिनट की ट्रेड के लिए हाई एक्यूरेसी रिवर्सल सिग्नल।",
+            s2t: "🟩 डोजी ब्रेकआउट",
+            s2d: "सुरक्षित एंट्री के लिए प्रोफेशनल प्राइस एक्शन स्ट्रैटेजी।",
+            bottomNote: "🚀 आज ही Quotex अकाउंट बनाएं और हमारे प्रो बॉट सिग्नल्स से रोजाना $50 - $100 का मुनाफा कमाएं!",
+            accuracyNote: "95% एक्यूरेसी + 24/7 वर्किंग सिग्नल्स"
+        },
+        en: {
+            langBtn: "हिन्दी में देखें",
+            lockTitle: "VIP ACCESS REQUIRED",
+            instructions: `1. <span class="instr-step">Create Account:</span> Click Step 01 below.<br>2. <span class="instr-step">Wallet Deposit:</span> Min. $50 deposit.<br>3. <span class="instr-step">Verification:</span> Send Trader ID on Telegram.<br><i style="color: #8b949e; font-size: 11px;">Signals will appear after entering password.</i>`,
+            unlockBtn: "UNLOCK LIVE SIGNALS",
+            step1: "STEP 01: CREATE QUOTEX ACCOUNT",
+            step2: "STEP 02: CONTACT FOR PASSWORD",
+            s1t: "🟥 KELTNER REVERSAL",
+            s1d: "High accuracy reversal signals for 1-min trades.",
+            s2t: "🟩 DOJI BREAKOUT",
+            s2d: "Professional price action strategy for safe entries.",
+            bottomNote: "🚀 Create Quotex Account today and make $50 - $100 assured daily profit with our Pro Bot Signals!",
+            accuracyNote: "95% Accuracy + 24/7 Working Signals"
+        }
+    };
+
+    function toggleLang() {
+        currentLang = currentLang === 'en' ? 'hi' : 'en';
+        const t = translations[currentLang];
+        document.getElementById('langBtn').innerText = t.langBtn;
+        document.getElementById('lockTitle').innerText = t.lockTitle;
+        document.getElementById('instructions').innerHTML = t.instructions;
+        document.getElementById('unlockBtn').innerText = t.unlockBtn;
+        document.getElementById('step1Btn').innerText = t.step1;
+        document.getElementById('step2Btn').innerText = t.step2;
+        document.getElementById('s1t').innerText = t.s1t;
+        document.getElementById('s1d').innerText = t.s1d;
+        document.getElementById('s2t').innerText = t.s2t;
+        document.getElementById('s2d').innerText = t.s2d;
+        document.getElementById('bottomNote').innerText = t.bottomNote;
+        document.getElementById('accuracyNote').innerText = t.accuracyNote;
+    }
+
     function startSync() {
         setInterval(() => {
             const now = new Date();
             document.getElementById('clock').innerText = now.getHours().toString().padStart(2, '0') + ":" + now.getMinutes().toString().padStart(2, '0') + ":" + now.getSeconds().toString().padStart(2, '0');
         }, 1000);
     }
+    
     function unlock() {
         if(document.getElementById('pass').value === "GautamVIP01") {
             document.getElementById('lockUI').style.display = 'none';
             document.getElementById('sigBox').style.filter = 'none';
-        } else { alert("Pehle Step 1 aur Step 2 poora karein!"); }
+        } else { 
+            const msg = currentLang === 'hi' ? "कृपया स्टेप 1 और 2 पहले पूरा करें!" : "Please complete Step 1 & 2 first!";
+            alert(msg); 
+        }
     }
     startSync();
 </script>
