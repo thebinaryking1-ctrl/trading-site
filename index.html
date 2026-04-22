@@ -3,102 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GAUTAM CHAUHAN | VIP STRATEGY HUB</title>
+    <title>GAUTAM CHAUHAN | PRO VIP TERMINAL</title>
     <style>
         :root { --gold: #f0b90b; --accent: #00ff88; --dark-bg: #0d1117; --card-bg: rgba(22, 27, 34, 0.9); --border: #30363d; --sell: #ff4a4a; --buy: #00ff88; }
         body { font-family: 'Inter', sans-serif; background: radial-gradient(circle at top, #161b22, #0d1117); color: #c9d1d9; margin: 0; padding: 0; }
-        .container { max-width: 650px; margin: auto; padding: 20px; }
-        .branding { text-align: center; padding: 30px 0; }
-        .branding h1 { color: white; font-size: 28px; margin: 0; font-weight: 800; background: linear-gradient(to right, #fff, var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .strat-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 15px; padding: 20px; margin-bottom: 15px; text-align: left; border-left: 5px solid var(--gold); }
-        .strat-title { font-weight: 800; font-size: 18px; margin-bottom: 10px; display: block; }
-        .strat-detail { font-size: 14px; line-height: 1.6; color: #acbac7; }
-        .action-up { color: var(--buy); font-weight: bold; }
-        .action-down { color: var(--sell); font-weight: bold; }
-        .step-box { background: #1c2128; border: 1px solid var(--border); border-radius: 12px; padding: 15px; margin-bottom: 10px; }
-        .btn { display: block; width: 100%; padding: 15px; border-radius: 10px; text-decoration: none; font-weight: 700; text-align: center; margin-top: 10px; border:none; cursor:pointer; }
+        .container { max-width: 550px; margin: auto; padding: 15px; }
+        
+        .header { text-align: center; padding: 20px 0; }
+        .header h1 { color: white; font-size: 24px; margin: 0; font-weight: 800; background: linear-gradient(to right, #fff, var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+        /* VIP TERMINAL - NOW AT TOP */
+        .terminal { background: #000; border: 2px solid var(--gold); border-radius: 20px; padding: 25px 15px; margin-bottom: 25px; position: relative; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .lock-screen { position: absolute; inset: 0; background: rgba(0,0,0,0.95); z-index: 100; border-radius: 18px; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        input { background: #0d1117; border: 1px solid #30363d; color: #fff; padding: 10px; width: 60%; border-radius: 8px; margin: 10px 0; text-align: center; font-size: 16px; }
+        #clock { font-size: 28px; color: var(--gold); font-weight: bold; font-family: monospace; letter-spacing: 2px; margin-bottom: 15px; }
+
+        /* PROFESSIONAL SIGNAL BOX */
+        .sig-display { background: #161b22; border: 1px solid #333; border-radius: 15px; padding: 20px; margin: 10px auto; width: 90%; }
+        #pair { font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: #8b949e; margin-bottom: 5px; }
+        #dir { font-size: 32px; font-weight: 900; margin: 5px 0; }
+        #timer { font-size: 12px; color: var(--gold); font-weight: bold; background: rgba(240,185,11,0.1); padding: 4px 10px; border-radius: 20px; display: inline-block; }
+
+        /* COMPACT BUTTONS */
+        .btn-wrap { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-bottom: 25px; }
+        .btn { display: inline-block; width: 85%; padding: 12px; border-radius: 8px; text-decoration: none; font-weight: 700; text-align: center; font-size: 14px; border: none; cursor: pointer; transition: 0.3s; }
         .btn-gold { background: var(--gold); color: #000; }
         .btn-blue { background: #229ED9; color: #fff; }
-        .terminal { background: #000; border: 2px solid var(--gold); border-radius: 20px; padding: 30px 15px; margin-top: 30px; position: relative; text-align: center; }
-        .lock-screen { position: absolute; inset: 0; background: rgba(0,0,0,0.92); z-index: 100; border-radius: 18px; display: flex; flex-direction: column; justify-content: center; align-items: center; }
-        input { background: #0d1117; border: 1px solid #30363d; color: #fff; padding: 12px; width: 70%; border-radius: 8px; margin: 15px 0; text-align: center; }
-        #clock { font-size: 32px; color: var(--gold); font-weight: bold; margin-bottom: 10px; }
-        .blur { filter: blur(15px); }
+        .btn:hover { transform: scale(1.02); }
+
+        /* STRATEGY SECTION */
+        .strat-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 15px; margin-bottom: 12px; border-left: 4px solid var(--gold); }
+        .strat-title { font-weight: 800; font-size: 15px; display: block; margin-bottom: 5px; color: #fff; }
+        .strat-detail { font-size: 13px; line-height: 1.5; color: #acbac7; }
+        .action-up { color: var(--buy); font-weight: bold; }
+        .action-down { color: var(--sell); font-weight: bold; }
+        .blur { filter: blur(15px); pointer-events: none; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <div class="branding">
+    <div class="header">
         <h1>GAUTAM CHAUHAN VIP</h1>
-        <p style="font-size: 12px; color: #8b949e;">Market Strategies & Live Signals</p>
-    </div>
-
-    <div class="strategy-section">
-        <h3 style="color: #fff; text-align: center;">📊 VIP TRADING STRATEGIES</h3>
-
-        <div class="strat-card" style="border-left-color: #ff4a4a;">
-            <span class="strat-title">🟥 STRATEGY 1: KELTNER REVERSAL</span>
-            <div class="strat-detail">
-                • <span class="action-down">Sell (Down):</span> Green candle upper line ke bahar close ho -> Next Down.<br>
-                • <span class="action-up">Buy (Up):</span> Red candle lower line ke bahar close ho -> Next Up.
-            </div>
-        </div>
-
-        <div class="strat-card" style="border-left-color: #00ff88;">
-            <span class="strat-title">🟩 STRATEGY 2: DOJI BREAKOUT</span>
-            <div class="strat-detail">
-                • <b>Setup:</b> Up-trend mein Doji bane.<br>
-                • <span class="action-up">Entry:</span> Agli Green candle Doji ki Upper Wick ke upar close ho -> Next Up.
-            </div>
-        </div>
-
-        <div class="strat-card" style="border-left-color: #229ED9;">
-            <span class="strat-title">🟦 STRATEGY 3: ZIGZAG MOMENTUM</span>
-            <div class="strat-detail">
-                • <b>Rule:</b> Jab ZigZag line ek naya point (v-shape) banaye:<br>
-                • <span class="action-down">Sell (Down):</span> Naye point ke baad agar pehli candle RED bane -> Next Down.<br>
-                • <span class="action-up">Buy (Up):</span> Naye point ke baad agar pehli candle GREEN bane -> Next Up.
-            </div>
-        </div>
-    </div>
-
-    <div class="step-box">
-        <b style="color: var(--gold);">Step 01: Ecosystem Access</b>
-        <a href="https://broker-qx.pro/sign-up/?lid=2091482" class="btn btn-gold">CREATE QUOTEX ACCOUNT</a>
-    </div>
-
-    <div class="step-box">
-        <b style="color: var(--accent);">Step 02: Verification</b>
-        <a href="https://t.me/Quotextrader004" class="btn btn-blue">SEND ID FOR VIP KEY</a>
     </div>
 
     <div class="terminal">
         <div id="clock">00:00:00</div>
+        
         <div id="lockUI" class="lock-screen">
-            <span style="font-size: 30px;">🛡️</span>
-            <p style="font-weight: bold; margin: 10px 0;">VIP TERMINAL LOCKED</p>
-            <input type="password" id="pass" placeholder="Enter VIP License Key">
-            <button class="btn btn-gold" onclick="unlock()" style="width: 60%; padding: 10px;">UNLOCK NOW</button>
+            <span style="font-size: 35px;">🔒</span>
+            <p style="font-weight: bold; margin: 5px 0; font-size: 14px;">PRO TERMINAL LOCKED</p>
+            <input type="password" id="pass" placeholder="Enter VIP Key">
+            <button class="btn btn-gold" onclick="unlock()" style="width: 50%; padding: 8px;">UNLOCK</button>
         </div>
+
         <div id="sigBox" class="blur">
-            <div id="pair" style="font-size: 18px; color: var(--accent);">EUR/USD (OTC)</div>
-            <div id="dir" style="font-size: 40px; font-weight: 900; margin: 10px 0;">WAIT...</div>
-            <div id="timer" style="color: #8b949e;">Analyzing...</div>
+            <div class="sig-display">
+                <div id="pair">ANALYZING MARKET...</div>
+                <div id="dir">READY</div>
+                <div id="timer">SYNCING WITH QUOTEX</div>
+            </div>
         </div>
     </div>
+
+    <div class="btn-wrap">
+        <a href="https://broker-qx.pro/sign-up/?lid=2091482" class="btn btn-gold">1. CREATE QUOTEX ACCOUNT</a>
+        <a href="https://t.me/Quotextrader004" class="btn btn-blue">2. SEND ID FOR VIP KEY</a>
+    </div>
+
+    <div class="strategy-section">
+        <div class="strat-card"><span class="strat-title">🟥 KELTNER REVERSAL</span>
+            <div class="strat-detail">• <span class="action-down">Sell:</span> Green candle upper line out -> Next Down.<br>• <span class="action-up">Buy:</span> Red candle lower line out -> Next Up.</div>
+        </div>
+        <div class="strat-card" style="border-left-color: var(--accent);"><span class="strat-title">🟩 DOJI BREAKOUT</span>
+            <div class="strat-detail">• <b>Setup:</b> Up-trend Doji.<br>• <span class="action-up">Entry:</span> Next Green candle wick break -> Next Up.</div>
+        </div>
+        <div class="strat-card" style="border-left-color: #229ED9;"><span class="strat-title">🟦 ZIGZAG MOMENTUM</span>
+            <div class="strat-detail">• <span class="action-down">Sell:</span> New point + Red candle -> Next Down.<br>• <span class="action-up">Buy:</span> New point + Green candle -> Next Up.</div>
+        </div>
+    </div>
+
 </div>
 
 <script>
     function startSync() {
         setInterval(() => {
             const now = new Date();
-            const time = now.getHours().toString().padStart(2, '0') + ":" + 
-                         now.getMinutes().toString().padStart(2, '0') + ":" + 
-                         now.getSeconds().toString().padStart(2, '0');
+            const time = now.getHours().toString().padStart(2, '0') + ":" + now.getMinutes().toString().padStart(2, '0') + ":" + now.getSeconds().toString().padStart(2, '0');
             document.getElementById('clock').innerText = time;
             if(now.getSeconds() === 0 && document.getElementById('lockUI').style.display === 'none') { newSignal(); }
-            if(document.getElementById('lockUI').style.display === 'none') { document.getElementById('timer').innerText = "Update in: " + (60 - now.getSeconds()) + "s"; }
+            if(document.getElementById('lockUI').style.display === 'none') { document.getElementById('timer').innerText = "NEXT UPDATE IN: " + (60 - now.getSeconds()) + "s"; }
         }, 1000);
     }
     function unlock() {
@@ -115,7 +109,7 @@
         const res = dirs[Math.floor(Math.random()*dirs.length)];
         const el = document.getElementById('dir');
         el.innerText = res;
-        el.style.color = res.includes("UP") ? "#00ff88" : "#ff4a4a";
+        el.style.color = res.includes("UP") ? "var(--buy)" : "var(--sell)";
     }
     startSync();
 </script>
