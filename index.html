@@ -9,32 +9,26 @@
         body { font-family: 'Inter', sans-serif; background: radial-gradient(circle at top, #161b22, #0d1117); color: #c9d1d9; margin: 0; padding: 0; text-align: center; }
         .container { max-width: 500px; margin: auto; padding: 15px; }
         
-        /* Fixed Header - Updated Text */
         .header h1 { color: white; font-size: 26px; margin: 20px 0 10px; font-weight: 800; background: linear-gradient(to right, #fff, var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-        /* VIP TERMINAL BOX */
         .terminal { background: #000; border: 2px solid var(--gold); border-radius: 20px; padding: 25px 15px; margin-bottom: 20px; position: relative; overflow: hidden; box-shadow: 0 0 20px rgba(240,185,11,0.2); }
         .lock-screen { position: absolute; inset: 0; background: rgba(0,0,0,0.96); z-index: 100; border-radius: 18px; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; }
         
-        /* INSTRUCTIONS INSIDE BOX */
         .instr-text { font-size: 13px; color: #ccc; margin-bottom: 15px; line-height: 1.4; }
         .instr-step { color: var(--gold); font-weight: bold; }
         
         input { background: #161b22; border: 1px solid var(--border); color: #fff; padding: 12px; width: 80%; border-radius: 10px; margin: 10px 0; text-align: center; font-size: 16px; }
         #clock { font-size: 30px; color: var(--gold); font-weight: bold; font-family: monospace; margin-bottom: 15px; text-shadow: 0 0 10px rgba(240,185,11,0.5); }
 
-        /* SIGNAL DASHBOARD */
         .sig-card { background: linear-gradient(145deg, #1c2128, #11161d); border: 1px solid #333; border-radius: 15px; padding: 25px; margin: 10px auto; width: 85%; }
         #pair { font-size: 14px; color: #8b949e; letter-spacing: 2px; margin-bottom: 8px; }
         #dir { font-size: 38px; font-weight: 900; margin: 10px 0; }
         #timer { font-size: 12px; color: var(--gold); background: rgba(240,185,11,0.1); padding: 5px 15px; border-radius: 20px; display: inline-block; font-weight: bold; }
 
-        /* COMPACT BUTTONS */
         .btn { display: block; width: 90%; margin: 10px auto; padding: 14px; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 14px; border: none; cursor: pointer; transition: 0.2s; }
         .btn-gold { background: var(--gold); color: #000; }
         .btn-blue { background: #229ED9; color: #fff; }
 
-        /* STRATEGY CARDS */
         .strat-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 15px; margin-bottom: 12px; text-align: left; border-left: 4px solid var(--gold); }
         .strat-title { font-weight: 800; font-size: 15px; color: #fff; display: block; margin-bottom: 5px; }
         .strat-detail { font-size: 13px; color: #acbac7; }
@@ -55,7 +49,7 @@
         <div id="clock">00:00:00</div>
         
         <div id="lockUI" class="lock-screen">
-            <div style="font-size: 40px; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; height: 50px;">🔐</div>
+            <div style="font-size: 45px; line-height: 1; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; height: 60px;">🔐</div>
             <p style="font-weight: bold; color: white; margin-bottom: 10px;">VIP ACCESS REQUIREMENTS</p>
             <div class="instr-text">
                 1. <span class="instr-step">Account:</span> Create via Step 01 below.<br>
