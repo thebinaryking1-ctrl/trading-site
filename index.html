@@ -11,13 +11,17 @@
         .lang-switch { display: flex; justify-content: flex-end; margin-bottom: 10px; }
         .lang-btn { background: #1c2128; border: 1px solid var(--border); color: var(--gold); padding: 5px 12px; border-radius: 5px; cursor: pointer; font-weight: bold; font-size: 12px; }
         .header h1 { color: white; font-size: 24px; margin: 10px 0; font-weight: 800; text-transform: uppercase; }
-        .terminal { background: #000; border: 2px solid var(--gold); border-radius: 20px; min-height: 400px; margin-bottom: 20px; position: relative; overflow: hidden; box-shadow: 0 0 25px rgba(240,185,11,0.3); }
+        
+        .terminal { background: #000; border: 2px solid var(--gold); border-radius: 20px; min-height: 420px; margin-bottom: 20px; position: relative; overflow: hidden; box-shadow: 0 0 25px rgba(240,185,11,0.3); }
         .lock-screen { position: absolute; inset: 0; background: rgba(0,0,0,0.96); z-index: 100; border-radius: 18px; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 25px; gap: 12px; }
-        input { background: #161b22; border: 1px solid var(--border); color: #fff; padding: 15px; width: 85%; border-radius: 12px; text-align: center; font-size: 16px; box-sizing: border-box; }
-        #clock { font-size: 28px; color: var(--gold); font-weight: bold; font-family: monospace; padding-top: 15px; }
-        .btn { display: block; width: 90%; margin: 10px auto; padding: 16px; border-radius: 12px; text-decoration: none; font-weight: 800; font-size: 14px; border: none; cursor: pointer; transition: 0.3s; box-sizing: border-box; }
-        .btn-gold { background: var(--gold); color: #000; }
-        .btn-blue { background: #229ED9; color: #fff; }
+        
+        input { background: #161b22; border: 1px solid var(--border); color: #fff; padding: 15px; width: 85%; border-radius: 12px; text-align: center; font-size: 16px; margin-bottom: 10px; }
+        #clock { font-size: 28px; color: var(--gold); font-weight: bold; font-family: monospace; padding-top: 15px; z-index: 10; position: relative; }
+        
+        .btn { display: block; width: 100%; margin: 12px 0; padding: 18px; border-radius: 12px; text-decoration: none; font-weight: 800; font-size: 14px; cursor: pointer; box-sizing: border-box; }
+        .btn-gold { background: var(--gold); color: #000; border: none; }
+        .btn-blue { background: #229ED9; color: #fff; border: none; }
+        
         .profit-footer { margin-top: 30px; padding: 20px; background: rgba(0, 255, 136, 0.05); border: 1px dashed var(--accent); border-radius: 15px; }
         .profit-text { font-size: 15px; color: var(--gold); font-weight: 800; }
         footer { padding: 30px 0; color: #555; font-size: 11px; }
@@ -27,28 +31,32 @@
 
 <div class="container">
     <div class="lang-switch"><button class="lang-btn" onclick="toggleLang()" id="langBtn">हिन्दी में देखें</button></div>
-    <div class="header"><h1>GAUTAM CHAUHAN VIP SIGNAL</h1></div>
+    <div class="header"><h1>GAUTAM CHAUHAN VIP TERMINAL</h1></div>
 
     <div class="terminal">
         <div id="clock">00:00:00</div>
+        
         <div id="lockUI" class="lock-screen">
-            <div style="font-size: 55px;">🔐</div>
-            <p id="lockTitle" style="font-weight: 800; color: white;">VIP ACCESS REQUIRED</p>
+            <div style="font-size: 60px; margin-bottom: 10px;">🔐</div>
+            <p id="lockTitle" style="font-weight: 800; color: white; font-size: 18px; margin: 0;">VIP ACCESS REQUIRED</p>
+            <p id="lockSub" style="font-size: 12px; color: #8b949e; margin-bottom: 10px;">Unlock Real-Time AI Signals</p>
             <input type="password" id="pass" placeholder="Enter VIP Key">
-            <button class="btn btn-gold" id="unlockBtn" onclick="unlock()" style="width: 85%;">UNLOCK LIVE SIGNALS</button>
+            <button class="btn btn-gold" onclick="unlock()" style="width: 85%;">UNLOCK LIVE SIGNALS</button>
         </div>
 
         <div id="sigBox" style="filter: blur(25px); pointer-events: none; padding-top: 60px;">
             <div style="background: #1c2128; padding: 25px; border-radius: 20px; width: 85%; margin: auto; border: 1px solid #333;">
-                <div id="pairName" style="font-size: 14px; color: #8b949e;">EUR/USD (OTC)</div>
+                <div id="pairName" style="font-size: 14px; color: #8b949e;">SELECTING PAIR...</div>
                 <div id="signalDir" style="font-size: 35px; font-weight: 900; margin: 15px 0;">ANALYZING...</div>
                 <div id="status" style="font-size: 12px; color: var(--accent);">WAIT FOR NEXT CANDLE</div>
             </div>
         </div>
     </div>
 
-    <a href="https://broker-qx.pro/sign-up/?lid=2091886" class="btn btn-gold" id="step1Btn">STEP 01: CREATE QUOTEX ACCOUNT</a>
-    <a href="https://t.me/Quotextrader004" class="btn btn-blue" id="step2Btn">STEP 02: CONTACT FOR PASSWORD</a>
+    <div style="padding: 0 5px;">
+        <a href="https://broker-qx.pro/sign-up/?lid=2091886" class="btn btn-gold" id="step1Btn">STEP 01: CREATE QUOTEX ACCOUNT</a>
+        <a href="https://t.me/Quotextrader004" class="btn btn-blue" id="step2Btn">STEP 02: CONTACT FOR PASSWORD</a>
+    </div>
 
     <div class="profit-footer">
         <div class="profit-text" id="bottomNote">🚀 Create Quotex Account today and make $50 - $100 assured daily profit!</div>
@@ -58,18 +66,16 @@
 
 <script>
     let currentLang = 'en';
-    const pairs = ["EUR/USD (OTC)", "GBP/USD (OTC)", "USD/JPY (OTC)", "AUD/CAD (OTC)"];
+    const pairs = ["EUR/USD (OTC)", "GBP/USD (OTC)", "USD/JPY (OTC)", "AUD/CAD (OTC)", "EUR/GBP (OTC)"];
     
     function updateLogic() {
         const now = new Date();
         const sec = now.getSeconds();
         
-        // Clock Update
         document.getElementById('clock').innerText = now.getHours().toString().padStart(2, '0') + ":" + 
                                                    now.getMinutes().toString().padStart(2, '0') + ":" + 
                                                    sec.toString().padStart(2, '0');
 
-        // Signal Change on New Minute (00 seconds)
         if (sec === 0) {
             const pair = pairs[Math.floor(Math.random() * pairs.length)];
             const isUp = Math.random() > 0.5;
@@ -79,20 +85,19 @@
             document.getElementById('status').innerText = "LIVE SIGNAL ACTIVE";
             document.getElementById('status').style.color = "var(--accent)";
         } 
-        // Preparing for next candle (last 5 seconds of the minute)
         else if (sec > 55) {
             document.getElementById('signalDir').innerText = "ANALYZING...";
             document.getElementById('signalDir').style.color = "#8b949e";
             document.getElementById('status').innerText = "PREPARING NEXT CANDLE...";
-            document.getElementById('status').style.color = var(--gold);
+            document.getElementById('status').style.color = "#f0b90b";
         }
     }
 
     setInterval(updateLogic, 1000);
 
     const translations = {
-        hi: { langBtn: "English Website", lockTitle: "VIP एक्सेस की आवश्यकता है", unlockBtn: "सिग्नल्स अनलॉक करें", step1: "STEP 01: QUOTEX अकाउंट बनाएं", step2: "STEP 02: पासवर्ड के लिए संपर्क करें", bottomNote: "🚀 आज ही Quotex अकाउंट बनाएं और रोजाना $50 - $100 का मुनाफा कमाएं!" },
-        en: { langBtn: "हिन्दी में देखें", lockTitle: "VIP ACCESS REQUIRED", unlockBtn: "UNLOCK LIVE SIGNALS", step1: "STEP 01: CREATE QUOTEX ACCOUNT", step2: "STEP 02: CONTACT FOR PASSWORD", bottomNote: "🚀 Create Quotex Account today and make $50 - $100 assured daily profit!" }
+        hi: { langBtn: "English Website", lockTitle: "VIP एक्सेस की आवश्यकता है", step1: "STEP 01: QUOTEX अकाउंट बनाएं", step2: "STEP 02: पासवर्ड के लिए संपर्क करें", bottomNote: "🚀 आज ही Quotex अकाउंट बनाएं और रोजाना $50 - $100 का मुनाफा कमाएं!" },
+        en: { langBtn: "हिन्दी में देखें", lockTitle: "VIP ACCESS REQUIRED", step1: "STEP 01: CREATE QUOTEX ACCOUNT", step2: "STEP 02: CONTACT FOR PASSWORD", bottomNote: "🚀 Create Quotex Account today and make $50 - $100 assured daily profit!" }
     };
 
     function toggleLang() {
@@ -100,17 +105,19 @@
         const t = translations[currentLang];
         document.getElementById('langBtn').innerText = t.langBtn;
         document.getElementById('lockTitle').innerText = t.lockTitle;
-        document.getElementById('unlockBtn').innerText = t.unlockBtn;
         document.getElementById('step1Btn').innerText = t.step1;
         document.getElementById('step2Btn').innerText = t.step2;
         document.getElementById('bottomNote').innerText = t.bottomNote;
     }
 
     function unlock() {
-        if(document.getElementById('pass').value === "GautamVIP01") {
+        const val = document.getElementById('pass').value;
+        if(val === "GautamVIP01") {
             document.getElementById('lockUI').style.display = 'none';
             document.getElementById('sigBox').style.filter = 'none';
-        } else { alert(currentLang === 'hi' ? "गलत पासवर्ड!" : "Wrong Password!"); }
+        } else { 
+            alert(currentLang === 'hi' ? "गलत पासवर्ड!" : "Wrong Password!"); 
+        }
     }
 </script>
 </body>
