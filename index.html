@@ -1,113 +1,176 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GAUTAM TRADING ACADEMY & VIP BOT</title>
+    <title>GAUTAM CHAUHAN | LUXURY TRADING VIP</title>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background-color: #0b0e11; color: #e9eaeb; margin: 0; padding: 0; text-align: center; }
-        .wrapper { max-width: 800px; margin: auto; padding: 20px; }
-        .section { background: #1c1f26; padding: 20px; border-radius: 15px; margin-bottom: 30px; border: 1px solid #333; text-align: left; }
-        h1, h2 { color: #00c805; text-align: center; }
-        p { line-height: 1.6; color: #b5b5b5; }
-        .highlight { color: #58a6ff; font-weight: bold; }
-        .bot-container { max-width: 450px; margin: 20px auto; background: #1c1f26; padding: 25px; border-radius: 20px; border: 2px solid #00c805; box-shadow: 0px 0px 20px rgba(0,200,5,0.3); }
-        #market-time { font-size: 18px; color: #fff; background: #333; padding: 8px 20px; border-radius: 50px; display: inline-block; margin-bottom: 20px; border: 1px solid #00c805; font-family: monospace; }
-        input { padding: 12px; width: 85%; margin-bottom: 15px; border-radius: 8px; border: 1px solid #474d57; background: #2b2f36; color: white; outline: none; }
-        .btn { background: #00c805; color: white; padding: 14px 20px; text-decoration: none; border-radius: 8px; display: block; margin: 10px 0; font-weight: bold; border: none; cursor: pointer; text-align: center; font-size: 16px; }
-        .btn-tg { background: #229ED9; }
-        .btn-qx { background: #f0b90b; color: #000; }
-        .signal-box { background: #2b2f36; padding: 20px; border-radius: 15px; margin: 15px 0; border: 1px solid #444; }
-        .pair { font-size: 20px; color: #58a6ff; font-weight: bold; }
-        .direction { font-size: 36px; font-weight: 900; margin: 10px 0; }
-        .up { color: #00c805; text-shadow: 0 0 10px rgba(0,200,5,0.5); }
-        .down { color: #ff3e3e; text-shadow: 0 0 10px rgba(255,62,62,0.5); }
-        #timer-box { font-size: 16px; color: #f0b90b; font-weight: bold; background: rgba(240,185,11,0.1); padding: 10px; border-radius: 10px; border: 1px dashed #f0b90b; }
-        #lock-screen { display: block; }
-        #signal-screen { display: none; }
+        :root { 
+            --gold: #f0b90b; 
+            --accent: #00ff88; 
+            --dark-bg: #0d1117; 
+            --card-bg: rgba(22, 27, 34, 0.8);
+            --border: #30363d;
+        }
+        body { 
+            font-family: 'Inter', -apple-system, sans-serif; 
+            background: radial-gradient(circle at top, #161b22, #0d1117); 
+            color: #c9d1d9; margin: 0; padding: 0; line-height: 1.6;
+        }
+        .container { max-width: 600px; margin: auto; padding: 25px; }
+
+        /* Header Branding */
+        .branding { padding: 40px 0; text-align: center; }
+        .branding h1 { 
+            color: white; font-size: 32px; margin: 0; font-weight: 800; 
+            text-transform: uppercase; letter-spacing: 2px;
+            background: linear-gradient(to right, #fff, var(--gold));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+
+        /* Education Glass Card */
+        .glass-card { 
+            background: var(--card-bg); backdrop-filter: blur(10px); 
+            border: 1px solid var(--border); border-radius: 20px; 
+            padding: 20px; margin-bottom: 25px; 
+        }
+        .candle-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .c-item { background: rgba(255,255,255,0.03); padding: 15px; border-radius: 12px; border: 1px solid #333; }
+        .c-item b { display: block; margin-top: 5px; color: var(--gold); }
+
+        /* Step Section */
+        .step-box { 
+            background: linear-gradient(145deg, #1c2128, #11161d);
+            border: 1px solid var(--border); border-radius: 15px; 
+            padding: 20px; margin-bottom: 15px; position: relative; overflow: hidden;
+        }
+        .step-box::before {
+            content: ""; position: absolute; left: 0; top: 0; height: 100%; 
+            width: 4px; background: var(--accent);
+        }
+
+        /* High-End Buttons */
+        .btn { 
+            display: block; width: 100%; padding: 16px; border-radius: 12px; 
+            text-decoration: none; font-weight: 700; font-size: 16px; 
+            transition: 0.3s; margin-top: 15px; border: none; cursor: pointer;
+            box-sizing: border-box;
+        }
+        .btn-gold { background: var(--gold); color: #000; box-shadow: 0 4px 15px rgba(240,185,11,0.2); }
+        .btn-blue { background: #229ED9; color: #fff; box-shadow: 0 4px 15px rgba(34,158,217,0.2); }
+        .btn-gold:hover, .btn-blue:hover { transform: translateY(-2px); opacity: 0.9; }
+
+        /* VIP SIGNAL AREA */
+        .signal-portal { 
+            background: #000; border: 2px solid var(--gold); 
+            border-radius: 25px; padding: 40px 20px; margin-top: 40px;
+            position: relative; text-align: center;
+        }
+        .lock-overlay { 
+            position: absolute; inset: 0; background: rgba(0,0,0,0.85); 
+            z-index: 100; border-radius: 23px; display: flex; 
+            flex-direction: column; justify-content: center; align-items: center; 
+        }
+        input { 
+            background: #161b22; border: 1px solid #30363d; color: #fff; 
+            padding: 15px; width: 80%; border-radius: 10px; margin: 15px 0; text-align: center;
+        }
+        #clock { font-size: 36px; color: var(--gold); font-weight: bold; letter-spacing: 3px; margin-bottom: 10px; }
+        .blur-text { filter: blur(12px); user-select: none; }
     </style>
 </head>
 <body>
 
-<div class="wrapper">
-    <h1>🚀 GAUTAM TRADING ACADEMY</h1>
-
-    <div class="section">
-        <h2>📊 Candlestick & Indicator Strategy</h2>
-        <p>Market mein trade karne se pehle <span class="highlight">Candle Behavior</span> ko samjhein. Humara bot <span class="highlight">Keltner Channel</span> aur <span class="highlight">Bollinger Bands</span> ke breakout strategy par kaam karta hai. Jab candle 1-minute ke time frame par upper band ko touch karke niche aati hai, tab reversal signal banta hai.</p>
+<div class="container">
+    <div class="branding">
+        <h1>Gautam Chauhan VIP</h1>
+        <p style="font-size: 13px; color: #8b949e;">Next-Gen Trading Intelligence</p>
     </div>
 
-    <div class="bot-container">
-        <h2>🤖 GAUTAM VIP BOT</h2>
-        <div id="market-time">Market Time: 00:00:00</div>
-
-        <div id="lock-screen">
-            <p style="color: #848e9c;">VIP Access Locked</p>
-            <input type="password" id="passInput" placeholder="Enter Password (Gautam777)">
-            <button class="btn" style="width:100%" onclick="checkPass()">UNLOCK LIVE SIGNALS</button>
-            <hr style="border: 0.1px solid #333; margin: 20px 0;">
-            <p style="font-size: 13px;">Password Chahiye? Niche Button Par Click Karein 👇</p>
-            <a href="https://broker-qx.pro/sign-up/?lid=2091482" target="_blank" class="btn btn-qx">1. Create Quotex Account</a>
-            <a href="https://t.me/Quotextrader004" target="_blank" class="btn btn-tg">2. Contact on Telegram</a>
-        </div>
-
-        <div id="signal-screen">
-            <div class="signal-box">
-                <div class="pair" id="asset-name">CONNECTING...</div>
-                <div id="signal-dir" class="direction">---</div>
-                <div id="timer-box">Syncing with Market...</div>
-            </div>
-            <a href="https://broker-qx.pro/sign-up/?lid=2091482" target="_blank" class="btn">Trade Now on Quotex</a>
-            <a href="https://t.me/Quotextrader004" target="_blank" class="btn btn-tg">Join Telegram VIP</a>
-            <p style="font-size: 11px; color: #555;">Live Sync Active: signals update every 00s.</p>
+    <div class="glass-card">
+        <h3 style="margin-top:0; color: #fff;">📊 Strategy Manual</h3>
+        <div class="candle-grid">
+            <div class="c-item"><span style="font-size:30px">🔨</span> <b>Hammer</b> <small>Bullish Reversal</small></div>
+            <div class="c-item"><span style="font-size:30px">☄️</span> <b>Shooting Star</b> <small>Bearish Setup</small></div>
         </div>
     </div>
 
-    <p style="color: #666; font-size: 12px; margin-top: 30px;">
-        Copyright © 2026 Gautam Chauhan. All rights reserved.
-    </p>
+    <div class="step-box">
+        <h4 style="margin:0; color: var(--gold);">Step 01: Ecosystem Access</h4>
+        <p style="font-size: 14px;">Hamare VIP server se connect hone ke liye naya account banayein.</p>
+        <a href="https://broker-qx.pro/sign-up/?lid=2091482" class="btn btn-gold">CREATE QUOTEX ACCOUNT</a>
+    </div>
+
+    <div class="step-box">
+        <h4 style="margin:0; color: var(--accent);">Step 02: Fund & Verify</h4>
+        <p style="font-size: 14px;">$30 ya zyada deposit karke apni Trader ID niche bhein.</p>
+        <a href="https://t.me/Quotextrader004" class="btn btn-blue">SEND ID FOR VERIFICATION</a>
+    </div>
+
+    <div class="signal-portal">
+        <div id="clock">00:00:00</div>
+        
+        <div id="lockUI" class="lock-overlay">
+            <span style="font-size: 40px; margin-bottom: 10px;">🛡️</span>
+            <p style="margin:0; font-weight: bold;">VIP TERMINAL LOCKED</p>
+            <input type="password" id="vipKey" placeholder="Enter License Key">
+            <button class="btn btn-gold" onclick="unlock()" style="width: 70%; padding: 12px;">UNLOCK SYSTEM</button>
+        </div>
+
+        <div id="signalContent" class="blur-text">
+            <div id="pairName" style="font-size: 20px; color: var(--accent);">EUR/USD (OTC)</div>
+            <div id="direction" style="font-size: 48px; font-weight: 900; margin: 10px 0;">UP CALL</div>
+            <div id="timer" style="color: #8b949e;">Analyzing Market...</div>
+        </div>
+    </div>
+
+    <footer style="margin-top: 50px; opacity: 0.5; font-size: 11px;">
+        © 2026 GAUTAM CHAUHAN | TRADING ACADEMY PRO
+    </footer>
 </div>
 
 <script>
-    // Live Clock Function
-    function updateClock() {
-        const now = new Date();
-        const timeString = now.getHours().toString().padStart(2, '0') + ":" + 
-                           now.getMinutes().toString().padStart(2, '0') + ":" + 
-                           now.getSeconds().toString().padStart(2, '0');
-        document.getElementById('market-time').innerText = "Market Time: " + timeString;
-        
-        if (now.getSeconds() === 0 && document.getElementById("signal-screen").style.display === "block") {
-            generateSignal();
-        }
-        
-        if (document.getElementById("signal-screen").style.display === "block") {
-            let secondsLeft = 60 - now.getSeconds();
-            document.getElementById("timer-box").innerText = "Next Signal in: " + secondsLeft + "s";
-        }
-    }
-    setInterval(updateClock, 1000);
+    function updateLiveSync() {
+        setInterval(() => {
+            const now = new Date();
+            const h = now.getHours().toString().padStart(2, '0');
+            const m = now.getMinutes().toString().padStart(2, '0');
+            const s = now.getSeconds().toString().padStart(2, '0');
+            document.getElementById('clock').innerText = `${h}:${m}:${s}`;
 
-    function checkPass() {
-        if (document.getElementById("passInput").value === "Gautam777") {
-            document.getElementById("lock-screen").style.display = "none";
-            document.getElementById("signal-screen").style.display = "block";
-            generateSignal(); 
-        } else { alert("Incorrect Password!"); }
+            if(now.getSeconds() === 0 && document.getElementById('lockUI').style.display === 'none') {
+                triggerSignal();
+            }
+
+            if(document.getElementById('lockUI').style.display === 'none') {
+                document.getElementById('timer').innerText = "Update in: " + (60 - now.getSeconds()) + "s";
+            }
+        }, 1000);
     }
 
-    function generateSignal() {
-        const pairs = ["EUR/USD (OTC)", "GBP/USD (OTC)", "USD/INR (OTC)", "AUD/CAD (OTC)", "EUR/JPY (OTC)"];
-        const dirs = ["CALL (UP) ⬆️", "PUT (DOWN) ⬇️"];
-        
-        document.getElementById("asset-name").innerText = pairs[Math.floor(Math.random()*pairs.length)];
-        let d = dirs[Math.floor(Math.random()*dirs.length)];
-        let el = document.getElementById("signal-dir");
-        el.innerText = d;
-        el.className = d.includes("UP") ? "direction up" : "direction down";
+    function unlock() {
+        const key = document.getElementById('vipKey').value;
+        if(key === "GautamVIP") {
+            document.getElementById('lockUI').style.display = 'none';
+            document.getElementById('signalContent').classList.remove('blur-text');
+            triggerSignal();
+        } else {
+            alert("Invalid License Key! Contact Admin.");
+        }
     }
+
+    function triggerSignal() {
+        const assets = ["EUR/USD (OTC)", "GBP/JPY (OTC)", "USD/INR (OTC)", "AUD/CAD (OTC)"];
+        const dirs = ["CALL UP ⬆️", "PUT DOWN ⬇️"];
+        document.getElementById('pairName').innerText = assets[Math.floor(Math.random()*assets.length)];
+        const move = dirs[Math.floor(Math.random()*dirs.length)];
+        const dEl = document.getElementById('direction');
+        dEl.innerText = move;
+        dEl.style.color = move.includes("UP") ? "#00ff88" : "#ff4a4a";
+    }
+
+    updateLiveSync();
 </script>
 
 </body>
-</html>  
-
+</html>
