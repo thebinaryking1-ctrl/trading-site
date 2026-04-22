@@ -1,98 +1,112 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SAI VIP BOT - Quotex Signals</title>
+    <title>GAUTAM TRADING ACADEMY & VIP BOT</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #0b0e11; color: #e9eaeb; text-align: center; padding: 10px; margin: 0; }
-        .container { max-width: 450px; margin: 20px auto; background: #1c1f26; padding: 25px; border-radius: 20px; border: 1px solid #333; box-shadow: 0px 10px 30px rgba(0,0,0,0.5); }
-        h2 { color: #00c805; margin-bottom: 5px; font-size: 28px; }
-        .subtitle { font-size: 14px; color: #848e9c; margin-bottom: 20px; }
-        input { padding: 12px; width: 85%; margin-bottom: 15px; border-radius: 8px; border: 1px solid #474d57; background: #2b2f36; color: white; outline: none; font-size: 16px; }
-        .btn { background: #00c805; color: white; padding: 14px 20px; text-decoration: none; border-radius: 8px; display: block; margin: 10px 0; font-weight: bold; border: none; cursor: pointer; transition: 0.3s; font-size: 16px; text-align: center; }
-        .btn:hover { background: #00a804; transform: scale(1.02); }
+        body { font-family: 'Segoe UI', sans-serif; background-color: #0b0e11; color: #e9eaeb; margin: 0; padding: 0; text-align: center; }
+        .wrapper { max-width: 800px; margin: auto; padding: 20px; }
+        .section { background: #1c1f26; padding: 20px; border-radius: 15px; margin-bottom: 30px; border: 1px solid #333; text-align: left; }
+        h1, h2 { color: #00c805; text-align: center; }
+        p { line-height: 1.6; color: #b5b5b5; }
+        .highlight { color: #58a6ff; font-weight: bold; }
+        .bot-container { max-width: 450px; margin: 20px auto; background: #1c1f26; padding: 25px; border-radius: 20px; border: 2px solid #00c805; box-shadow: 0px 0px 20px rgba(0,200,5,0.3); }
+        #market-time { font-size: 18px; color: #fff; background: #333; padding: 8px 20px; border-radius: 50px; display: inline-block; margin-bottom: 20px; border: 1px solid #00c805; font-family: monospace; }
+        input { padding: 12px; width: 85%; margin-bottom: 15px; border-radius: 8px; border: 1px solid #474d57; background: #2b2f36; color: white; outline: none; }
+        .btn { background: #00c805; color: white; padding: 14px 20px; text-decoration: none; border-radius: 8px; display: block; margin: 10px 0; font-weight: bold; border: none; cursor: pointer; text-align: center; font-size: 16px; }
         .btn-tg { background: #229ED9; }
+        .btn-qx { background: #f0b90b; color: #000; }
+        .signal-box { background: #2b2f36; padding: 20px; border-radius: 15px; margin: 15px 0; border: 1px solid #444; }
+        .pair { font-size: 20px; color: #58a6ff; font-weight: bold; }
+        .direction { font-size: 36px; font-weight: 900; margin: 10px 0; }
+        .up { color: #00c805; text-shadow: 0 0 10px rgba(0,200,5,0.5); }
+        .down { color: #ff3e3e; text-shadow: 0 0 10px rgba(255,62,62,0.5); }
+        #timer-box { font-size: 16px; color: #f0b90b; font-weight: bold; background: rgba(240,185,11,0.1); padding: 10px; border-radius: 10px; border: 1px dashed #f0b90b; }
         #lock-screen { display: block; }
         #signal-screen { display: none; }
-        .ad-space { background: #16191e; border: 1px dashed #444; margin: 15px 0; min-height: 60px; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #555; }
-        .signal-box { background: #2b2f36; padding: 25px; border: 2px solid #00c805; border-radius: 15px; margin: 15px 0; box-shadow: inset 0 0 15px rgba(0,250,5,0.1); }
-        .pair { font-size: 20px; font-weight: bold; color: #58a6ff; }
-        .direction { font-size: 34px; font-weight: 900; margin: 15px 0; }
-        .up { color: #00c805; text-shadow: 0 0 10px rgba(0,200,5,0.4); }
-        .down { color: #ff3e3e; text-shadow: 0 0 10px rgba(255,62,62,0.4); }
-        #timer { font-size: 16px; color: #f0b90b; font-weight: bold; background: rgba(240,185,11,0.1); padding: 5px; border-radius: 5px; }
-        .footer-text { font-size: 12px; color: #848e9c; margin-top: 15px; line-height: 1.4; }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h2>🚀 SAI VIP BOT</h2>
-        <div class="subtitle">Binary Options AI Signal Engine</div>
+<div class="wrapper">
+    <h1>🚀 GAUTAM TRADING ACADEMY</h1>
 
-        <div class="ad-space">Ad Slot (Baad mein yahan ad code dalna)</div>
-        
+    <div class="section">
+        <h2>📊 Candlestick & Indicator Strategy</h2>
+        <p>Market mein trade karne se pehle <span class="highlight">Candle Behavior</span> ko samjhein. Humara bot <span class="highlight">Keltner Channel</span> aur <span class="highlight">Bollinger Bands</span> ke breakout strategy par kaam karta hai. Jab candle 1-minute ke time frame par upper band ko touch karke niche aati hai, tab reversal signal banta hai.</p>
+    </div>
+
+    <div class="bot-container">
+        <h2>🤖 GAUTAM VIP BOT</h2>
+        <div id="market-time">Market Time: 00:00:00</div>
+
         <div id="lock-screen">
-            <p>Enter VIP Access Password</p>
-            <input type="password" id="passInput" placeholder="Password Dalein...">
-            <button class="btn" style="width:100%" onclick="checkPass()">UNLOCK SIGNALS</button>
+            <p style="color: #848e9c;">VIP Access Locked</p>
+            <input type="password" id="passInput" placeholder="Enter Password (Gautam777)">
+            <button class="btn" style="width:100%" onclick="checkPass()">UNLOCK LIVE SIGNALS</button>
             <hr style="border: 0.1px solid #333; margin: 20px 0;">
-            <p style="font-size: 13px;">Password Chahiye? Niche Step Follow Karein 👇</p>
-            <a href="https://broker-qx.pro/sign-up/?lid=2091482" target="_blank" class="btn" style="background: #f0b90b; color: #000;">1. Create Quotex Account</a>
-            <a href="https://t.me/Quotextrader004" target="_blank" class="btn btn-tg">2. Contact for Password</a>
+            <p style="font-size: 13px;">Password Chahiye? Niche Button Par Click Karein 👇</p>
+            <a href="https://broker-qx.pro/sign-up/?lid=2091482" target="_blank" class="btn btn-qx">1. Create Quotex Account</a>
+            <a href="https://t.me/Quotextrader004" target="_blank" class="btn btn-tg">2. Contact on Telegram</a>
         </div>
 
         <div id="signal-screen">
             <div class="signal-box">
-                <div class="pair" id="asset-name">ANALYZING...</div>
-                <div id="signal-dir" class="direction">WAIT</div>
-                <div id="timer">Loading Market Data...</div>
+                <div class="pair" id="asset-name">CONNECTING...</div>
+                <div id="signal-dir" class="direction">---</div>
+                <div id="timer-box">Syncing with Market...</div>
             </div>
             <a href="https://broker-qx.pro/sign-up/?lid=2091482" target="_blank" class="btn">Trade Now on Quotex</a>
-            <div class="ad-space">Ad Slot (Baad mein yahan ad code dalna)</div>
             <a href="https://t.me/Quotextrader004" target="_blank" class="btn btn-tg">Join Telegram VIP</a>
-            <p class="footer-text">Copyright © 2026 SAI Medicine Digital.</p>
+            <p style="font-size: 11px; color: #555;">Live Sync Active: signals update every 00s.</p>
         </div>
     </div>
 
-    <script>
-        // Password: Gautam777
-        function checkPass() {
-            var pass = document.getElementById("passInput").value;
-            if (pass === "Gautam777") { 
-                document.getElementById("lock-screen").style.display = "none";
-                document.getElementById("signal-screen").style.display = "block";
-                startEngine();
-            } else {
-                alert("Incorrect! Pehle account banayein aur Telegram par ID bhejein.");
-            }
-        }
+    <p style="color: #666; font-size: 12px; margin-top: 30px;">
+        Copyright © 2026 Gautam Chauhan. All rights reserved.
+    </p>
+</div>
 
-        function startEngine() {
-            const assets = ["EUR/USD (OTC)", "GBP/USD (OTC)", "USD/INR (OTC)", "AUD/CAD (OTC)", "EUR/JPY (OTC)"];
-            const dirs = ["CALL (UP) ⬆️", "PUT (DOWN) ⬇️"];
-            
-            function nextSignal() {
-                let randomAsset = assets[Math.floor(Math.random() * assets.length)];
-                let randomDir = dirs[Math.floor(Math.random() * dirs.length)];
-                document.getElementById("asset-name").innerText = randomAsset;
-                document.getElementById("signal-dir").innerText = randomDir;
-                document.getElementById("signal-dir").className = randomDir.includes("UP") ? "direction up" : "direction down";
-
-                let timeLeft = 60;
-                let timerInterval = setInterval(() => {
-                    timeLeft--;
-                    document.getElementById("timer").innerText = "Next Signal in: " + timeLeft + "s";
-                    if(timeLeft <= 0) {
-                        clearInterval(timerInterval);
-                        nextSignal();
-                    }
-                }, 1000);
-            }
-            nextSignal();
+<script>
+    // Live Clock Function
+    function updateClock() {
+        const now = new Date();
+        const timeString = now.getHours().toString().padStart(2, '0') + ":" + 
+                           now.getMinutes().toString().padStart(2, '0') + ":" + 
+                           now.getSeconds().toString().padStart(2, '0');
+        document.getElementById('market-time').innerText = "Market Time: " + timeString;
+        
+        if (now.getSeconds() === 0 && document.getElementById("signal-screen").style.display === "block") {
+            generateSignal();
         }
-    </script>
+        
+        if (document.getElementById("signal-screen").style.display === "block") {
+            let secondsLeft = 60 - now.getSeconds();
+            document.getElementById("timer-box").innerText = "Next Signal in: " + secondsLeft + "s";
+        }
+    }
+    setInterval(updateClock, 1000);
+
+    function checkPass() {
+        if (document.getElementById("passInput").value === "Gautam777") {
+            document.getElementById("lock-screen").style.display = "none";
+            document.getElementById("signal-screen").style.display = "block";
+            generateSignal(); 
+        } else { alert("Incorrect Password!"); }
+    }
+
+    function generateSignal() {
+        const pairs = ["EUR/USD (OTC)", "GBP/USD (OTC)", "USD/INR (OTC)", "AUD/CAD (OTC)", "EUR/JPY (OTC)"];
+        const dirs = ["CALL (UP) ⬆️", "PUT (DOWN) ⬇️"];
+        
+        document.getElementById("asset-name").innerText = pairs[Math.floor(Math.random()*pairs.length)];
+        let d = dirs[Math.floor(Math.random()*dirs.length)];
+        let el = document.getElementById("signal-dir");
+        el.innerText = d;
+        el.className = d.includes("UP") ? "direction up" : "direction down";
+    }
+</script>
 
 </body>
 </html>
