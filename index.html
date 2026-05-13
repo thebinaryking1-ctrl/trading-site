@@ -3,238 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GAUTAM CHAUHAN | ULTIMATE TRADING BOT</title>
+    <title>Pharmacy Billing System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        :root { --gold: #f0b90b; --accent: #00ff88; --dark-bg: #0d1117; --card-bg: rgba(22, 27, 34, 0.9); --border: #30363d; --sell: #ff4a4a; --buy: #00ff88; }
-        body { font-family: 'Inter', sans-serif; background: radial-gradient(circle at top, #161b22, #0d1117); color: #c9d1d9; margin: 0; padding: 0; text-align: center; }
-        .container { max-width: 600px; margin: auto; padding: 15px; }
-        
-        .lang-switch { display: flex; justify-content: flex-end; margin-bottom: 10px; }
-        .lang-btn { background: #1c2128; border: 1px solid var(--border); color: var(--gold); padding: 5px 12px; border-radius: 5px; cursor: pointer; font-weight: bold; font-size: 12px; }
-
-        .header h1 { color: white; font-size: 20px; margin: 15px 0; font-weight: 800; text-transform: uppercase; }
-        
-        /* Multi-Currency Scroll Box */
-        .currency-box { background: #1c2128; border: 1px solid var(--border); border-radius: 12px; padding: 10px; margin-bottom: 20px; }
-        .currency-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; max-height: 200px; overflow-y: auto; padding: 5px; }
-        .pair-card { background: #0d1117; border: 1px solid var(--border); padding: 8px 2px; border-radius: 6px; cursor: pointer; font-size: 10px; font-weight: bold; transition: 0.2s; color: #fff; }
-        .pair-card.active { border-color: var(--gold); background: rgba(240, 185, 11, 0.1); color: var(--gold); }
-
-        .terminal { background: #000; border: 2px solid var(--gold); border-radius: 20px; min-height: 320px; margin-bottom: 20px; position: relative; display: flex; flex-direction: column; justify-content: center; overflow: hidden; }
-        .lock-screen { position: absolute; inset: 0; background: rgba(0,0,0,0.98); z-index: 100; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; }
-        
-        #clock { font-size: 22px; color: var(--gold); font-weight: bold; font-family: monospace; position: absolute; top: 15px; width: 100%; }
-        input { background: #161b22; border: 1px solid var(--border); color: #fff; padding: 15px; width: 85%; border-radius: 12px; text-align: center; margin-bottom: 15px; font-size: 16px; }
-        
-        .btn { display: block; width: 100%; margin: 10px 0; padding: 16px; border-radius: 12px; text-decoration: none; font-weight: 800; font-size: 14px; cursor: pointer; border: none; box-sizing: border-box; text-align: center; }
-        .btn-gold { background: var(--gold); color: #000; }
-        .btn-blue { background: #229ED9; color: #fff; }
-
-        /* Strategy & Risk Section */
-        .info-section { text-align: left; background: #1c2128; border: 1px solid var(--border); border-radius: 15px; padding: 15px; margin-top: 20px; }
-        .info-title { color: var(--gold); font-weight: 800; border-bottom: 1px solid #333; padding-bottom: 5px; margin-bottom: 10px; font-size: 16px; }
-        .strat-card { margin-bottom: 15px; font-size: 13px; line-height: 1.5; }
-        .strat-card b { color: var(--accent); }
-
-        footer { padding: 25px 0; color: #555; font-size: 10px; }
+        @media print {
+            .no-print { display: none; }
+            .print-only { display: block !important; }
+        }
     </style>
 </head>
-<body>
-<div style="background-color: #ffeb3b; color: #000; padding: 15px; text-align: center; font-weight: bold; border-bottom: 3px solid #f44336; font-family: sans-serif; margin-bottom: 10px;">
-  📢 LIMITED OFFER: Get VIP AI Bot for FREE! <br>
-  Step 1: Register on Pocket option -> Step 2: Deposit $50 -> Step 3: Send ID to <a href="https://t.me/Quotextrader004" target="_blank" style="color: #f44336; text-decoration: underline; margin-left: 5px;">Admin</a>
-</div>
+<body class="bg-gray-100 p-5">
 
-<div class="container">
-    <div class="lang-switch"><button class="lang-btn" onclick="toggleLang()" id="langBtn">हिन्दी में देखें</button></div>
-    <div class="header"><h1>GAUTAM CHAUHAN | AI TERMINAL</h1></div>
+    <div class="max-w-4xl mx-auto bg-white p-8 shadow-lg rounded-lg">
+        <div class="text-center mb-8 border-b pb-4">
+            <h1 class="text-3xl font-bold uppercase">Medical Billing System</h1>
+            <p class="text-gray-600">Quick Invoice Generator</p>
+        </div>
 
-    <div class="currency-box">
-        <div style="font-size: 11px; margin-bottom: 5px; color: #8b949e;" id="selectText">Select Currency Pair:</div>
-        <div class="currency-grid" id="pairGrid">
-            <div class="pair-card active" onclick="selectPair(this, 'EUR/USD')">EUR/USD</div>
-            <div class="pair-card" onclick="selectPair(this, 'GBP/USD')">GBP/USD</div>
-            <div class="pair-card" onclick="selectPair(this, 'USD/JPY')">USD/JPY</div>
-            <div class="pair-card" onclick="selectPair(this, 'USD/BDT (OTC)')">USD/BDT</div>
-            <div class="pair-card" onclick="selectPair(this, 'CAD/CHF (OTC)')">CAD/CHF</div>
-            <div class="pair-card" onclick="selectPair(this, 'USD/EGP (OTC)')">USD/EGP</div>
-            <div class="pair-card" onclick="selectPair(this, 'USD/NGN (OTC)')">USD/NGN</div>
-            <div class="pair-card" onclick="selectPair(this, 'AUD/JPY')">AUD/JPY</div>
-            <div class="pair-card" onclick="selectPair(this, 'EUR/GBP')">EUR/GBP</div>
-            <div class="pair-card" onclick="selectPair(this, 'USD/MXN (OTC)')">USD/MXN</div>
-            <div class="pair-card" onclick="selectPair(this, 'AUD/NZD (OTC)')">AUD/NZD</div>
-            <div class="pair-card" onclick="selectPair(this, 'EUR/JPY')">EUR/JPY</div>
-            <div class="pair-card" onclick="selectPair(this, 'CAD/JPY')">CAD/JPY</div>
-            <div class="pair-card" onclick="selectPair(this, 'NZD/JPY (OTC)')">NZD/JPY</div>
-            <div class="pair-card" onclick="selectPair(this, 'AUD/USD')">AUD/USD</div>
-            <div class="pair-card" onclick="selectPair(this, 'GBP/JPY')">GBP/JPY</div>
-            <div class="pair-card" onclick="selectPair(this, 'USD/PHP (OTC)')">USD/PHP</div>
-            <div class="pair-card" onclick="selectPair(this, 'USD/IDR (OTC)')">USD/IDR</div>
-            <div class="pair-card" onclick="selectPair(this, 'GBP/AUD')">GBP/AUD</div>
-            <div class="pair-card" onclick="selectPair(this, 'AUD/CHF')">AUD/CHF</div>
-            <div class="pair-card" onclick="selectPair(this, 'USD/ARS (OTC)')">USD/ARS</div>
-            <div class="pair-card" onclick="selectPair(this, 'USD/CHF')">USD/CHF</div>
-            <div class="pair-card" onclick="selectPair(this, 'AUD/CAD')">AUD/CAD</div>
-            <div class="pair-card" onclick="selectPair(this, 'EUR/AUD')">EUR/AUD</div>
-            <div class="pair-card" onclick="selectPair(this, 'NZD/CAD (OTC)')">NZD/CAD</div>
-            <div class="pair-card" onclick="selectPair(this, 'USD/INR (OTC)')">USD/INR</div>
-            <div class="pair-card" onclick="selectPair(this, 'USD/BRL (OTC)')">USD/BRL</div>
-            <div class="pair-card" onclick="selectPair(this, 'CHF/JPY')">CHF/JPY</div>
-            <div class="pair-card" onclick="selectPair(this, 'GBP/CAD')">GBP/CAD</div>
-            <div class="pair-card" onclick="selectPair(this, 'NZD/CHF (OTC)')">NZD/CHF</div>
-            <div class="pair-card" onclick="selectPair(this, 'NZD/USD (OTC)')">NZD/USD</div>
-            <div class="pair-card" onclick="selectPair(this, 'USD/CAD')">USD/CAD</div>
-            <div class="pair-card" onclick="selectPair(this, 'USD/COP (OTC)')">USD/COP</div>
-            <div class="pair-card" onclick="selectPair(this, 'USD/DZD (OTC)')">USD/DZD</div>
-            <div class="pair-card" onclick="selectPair(this, 'USD/PKR (OTC)')">USD/PKR</div>
-            <div class="pair-card" onclick="selectPair(this, 'EUR/CAD')">EUR/CAD</div>
-            <div class="pair-card" onclick="selectPair(this, 'GBP/CHF')">GBP/CHF</div>
-            <div class="pair-card" onclick="selectPair(this, 'GBP/NZD (OTC)')">GBP/NZD</div>
-            <div class="pair-card" onclick="selectPair(this, 'EUR/CHF')">EUR/CHF</div>
-            <div class="pair-card" onclick="selectPair(this, 'EUR/NZD (OTC)')">EUR/NZD</div>
+        <div class="no-print mb-8 grid grid-cols-1 md:grid-cols-4 gap-4 bg-gray-50 p-4 rounded border">
+            <input id="medName" type="text" placeholder="Medicine Name" class="p-2 border rounded">
+            <input id="qty" type="number" placeholder="Qty" class="p-2 border rounded">
+            <input id="price" type="number" placeholder="Price per unit" class="p-2 border rounded">
+            <button onclick="addItem()" class="bg-blue-600 text-white p-2 rounded hover:bg-blue-700 font-bold">Add Item</button>
+        </div>
+
+        <table class="w-full text-left border-collapse mb-8">
+            <thead>
+                <tr class="bg-gray-200">
+                    <th class="border p-2">Item</th>
+                    <th class="border p-2">Qty</th>
+                    <th class="border p-2">Price</th>
+                    <th class="border p-2">Total</th>
+                    <th class="border p-2 no-print">Action</th>
+                </tr>
+            </thead>
+            <tbody id="billBody">
+                </tbody>
+        </table>
+
+        <div class="text-right">
+            <h2 class="text-2xl font-bold">Grand Total: ₹ <span id="grandTotal">0</span></h2>
+        </div>
+
+        <div class="mt-8 flex gap-4 no-print">
+            <button onclick="window.print()" class="bg-green-600 text-white px-6 py-2 rounded font-bold">Print Bill</button>
+            <button onclick="resetBill()" class="bg-red-500 text-white px-6 py-2 rounded font-bold">Clear All</button>
         </div>
     </div>
 
-    <div class="terminal">
-        <div id="clock">00:00:00</div>
-        
-        <div id="lockUI" class="lock-screen">
-            <div style="font-size: 50px;">🔐</div>
-            <p id="lockTitle" style="font-weight: 800; color: white; margin: 10px 0;">VIP ACCESS REQUIRED</p>
-            <p id="lockNote" style="font-size: 11px; color: #f0b90b; margin-bottom: 15px;">Note: Minimum $50 Deposit required for access</p>
-            <input type="password" id="pass" placeholder="Enter VIP Key">
-            <button class="btn btn-gold" onclick="unlock()" id="unlockBtn" style="width: 85%;">UNLOCK LIVE SIGNALS</button>
-        </div>
+    <script>
+        let totalAmount = 0;
 
-        <div id="sigBox" style="filter: blur(25px); pointer-events: none;">
-            <div id="pairDisplay" style="font-size: 14px; color: #8b949e; text-transform: uppercase;">EUR/USD</div>
-            <div id="signalDir" style="font-size: 38px; font-weight: 900; margin: 15px 0;">ANALYZING...</div>
-            <div id="status" style="font-size: 12px; color: var(--accent);">WAITING FOR NEXT CANDLE</div>
-        </div>
-    </div>
+        function addItem() {
+            const name = document.getElementById('medName').value;
+            const qty = document.getElementById('qty').value;
+            const price = document.getElementById('price').value;
 
-  <a href="https://u3.shortink.io/smart/6OuxPPgTwl2aO3" class="btn btn-gold" id="step1">STEP 01: REGISTER POCKET OPTION ACCOUNT</a> 
-    <a href="https://t.me/Quotextrader004" class="btn btn-blue" id="step2">STEP 02: GET PASSWORD ON TELEGRAM</a>
+            if (name && qty && price) {
+                const itemTotal = qty * price;
+                totalAmount += itemTotal;
 
-    <div class="info-section">
-        <div class="info-title" id="stratHeader">🚀 Pocket option Winning Strategies</div>
-        <div class="strat-card" id="strat1">
-            <b>Strategy 1: Keltner Channel Reversal</b><br>
-            Jab market Sideways ho. Agar Green candle Upper line break kare -> Next PUT. Agar Red candle Lower line break kare -> Next CALL.
-        </div>
-        <div class="strat-card" id="strat2">
-            <b>Strategy 2: Doji Trend Continuation</b><br>
-            Trend mein Doji bante hi agar agli candle Doji ki wick break kare, toh trend ke direction mein trade lein.
-        </div>
-        <div class="strat-card" id="strat3">
-            <b>Strategy 3: ZigZag Momentum</b><br>
-            Naye ZigZag point ke baad agar pehli candle GREEN bane -> Next UP. Agar RED bane -> Next DOWN.
-        </div>
-    </div>
-
-    <div class="info-section">
-        <div class="info-title" id="riskHeader">🛡️ Risk Management Rules</div>
-        <div class="strat-card" id="riskContent">
-            • Per Trade Risk: 2-3% of balance.<br>
-            • Daily Target: Stop after 3-4 wins.<br>
-            • News Check: Avoid trading during high volatility news.
-        </div>
-    </div>
-
-    <div class="profit-note" id="profitLine">
-        ✅ Register on Pocket option & Deposit $50 to get VIP access.<br>
-        Earn $20 - $50 Daily Profit with our AI Signals!
-    </div>
-
-    <footer>© 2026 GAUTAM CHAUHAN | TRADING HUB</footer>
-</div>
-
-<script>
-    let currentLang = 'en';
-    let selectedPair = 'EUR/USD';
-    
-    const translations = {
-        hi: {
-            langBtn: "English Site",
-            selectText: "Currency Pair Chunien:",
-            lockTitle: "VIP एक्सेस की आवश्यकता है",
-            lockNote: "Note: कम से कम $50 डिपॉजिट जरूरी है",
-            unlockBtn: "सिग्नल्स अनलॉक करें",
-            step1: "STEP 01: QUOTEX अकाउंट बनाएं",
-            step2: "STEP 02: टेलीग्राम पर पासवर्ड लें",
-            stratHeader: "🚀 विनिंग स्ट्रैटेजीज़",
-            riskHeader: "🛡️ रिस्क मैनेजमेंट नियम",
-            profitLine: "✅ Quotex में रजिस्टर करके $50 डिपॉजिट करें।<br>रोजाना $20 - $50 का मुनाफा कमाएं!",
-            analyzing: "विश्लेषण कर रहे हैं...",
-            waiting: "अगली कैंडल का इंतज़ार करें",
-            preparing: "अगली कैंडल की तैयारी..."
-        },
-        en: {
-            langBtn: "हिन्दी में देखें",
-            selectText: "Select Currency Pair:",
-            lockTitle: "VIP ACCESS REQUIRED",
-            lockNote: "Note: Minimum $50 Deposit required for access",
-            unlockBtn: "UNLOCK LIVE SIGNALS",
-            step1: "STEP 01: REGISTER QUOTEX ACCOUNT",
-            step2: "STEP 02: GET PASSWORD ON TELEGRAM",
-            stratHeader: "🚀 Quotex Winning Strategies",
-            riskHeader: "🛡️ Risk Management Rules",
-            profitLine: "✅ Register on Quotex & Deposit $50 to get VIP access.<br>Earn $20 - $50 Daily Profit with our AI Signals!",
-            analyzing: "ANALYZING...",
-            waiting: "WAITING FOR NEXT CANDLE",
-            preparing: "PREPARING NEXT CANDLE..."
+                const table = document.getElementById('billBody');
+                const row = `<tr>
+                    <td class="border p-2">${name}</td>
+                    <td class="border p-2">${qty}</td>
+                    <td class="border p-2">${price}</td>
+                    <td class="border p-2">${itemTotal.toFixed(2)}</td>
+                    <td class="border p-2 no-print text-center">
+                        <button onclick="this.parentElement.parentElement.remove(); updateTotal(-${itemTotal})" class="text-red-500 font-bold">X</button>
+                    </td>
+                </tr>`;
+                
+                table.innerHTML += row;
+                document.getElementById('grandTotal').innerText = totalAmount.toFixed(2);
+                
+                // Reset inputs
+                document.getElementById('medName').value = '';
+                document.getElementById('qty').value = '';
+                document.getElementById('price').value = '';
+            } else {
+                alert("Please fill all fields");
+            }
         }
-    };
 
-    function toggleLang() {
-        currentLang = currentLang === 'en' ? 'hi' : 'en';
-        const t = translations[currentLang];
-        document.getElementById('langBtn').innerText = t.langBtn;
-        document.getElementById('selectText').innerText = t.selectText;
-        document.getElementById('lockTitle').innerText = t.lockTitle;
-        document.getElementById('lockNote').innerText = t.lockNote;
-        document.getElementById('unlockBtn').innerText = t.unlockBtn;
-        document.getElementById('step1').innerText = t.step1;
-        document.getElementById('step2').innerText = t.step2;
-        document.getElementById('stratHeader').innerText = t.stratHeader;
-        document.getElementById('riskHeader').innerText = t.riskHeader;
-        document.getElementById('profitLine').innerHTML = t.profitLine;
-    }
-
-    function selectPair(element, pair) {
-        document.querySelectorAll('.pair-card').forEach(card => card.classList.remove('active'));
-        element.classList.add('active');
-        selectedPair = pair;
-        document.getElementById('pairDisplay').innerText = pair;
-    }
-
-    function updateLogic() {
-        const now = new Date();
-        const sec = now.getSeconds();
-        document.getElementById('clock').innerText = now.toLocaleTimeString();
-
-        if (sec === 0) {
-            const isUp = Math.random() > 0.5;
-            document.getElementById('signalDir').innerText = isUp ? "CALL UP ⬆️" : "PUT DOWN ⬇️";
-            document.getElementById('signalDir').style.color = isUp ? "var(--buy)" : "var(--sell)";
-            document.getElementById('status').innerText = "LIVE SIGNAL ACTIVE";
-            document.getElementById('status').style.color = "var(--accent)";
-        } else if (sec > 55) {
-            document.getElementById('signalDir').innerText = translations[currentLang].analyzing;
-            document.getElementById('signalDir').style.color = "#8b949e";
-            document.getElementById('status').innerText = translations[currentLang].preparing;
-            document.getElementById('status').style.color = "#f0b90b";
+        function updateTotal(amount) {
+            totalAmount += amount;
+            document.getElementById('grandTotal').innerText = totalAmount.toFixed(2);
         }
-    }
 
-    setInterval(updateLogic, 1000);
-
-    function unlock() {
-        if(document.getElementById('pass').value === "GautamVIP02") {
-            document.getElementById('lockUI').style.display = 'none';
-            document.getElementById('sigBox').style.filter = 'none';
-        } else { alert(currentLang === 'hi' ? "डिपॉजिट वेरिफिकेशन फेल!" : "Error: $50 Deposit Verification Failed!"); }
-    }
-</script>
+        function resetBill() {
+            document.getElementById('billBody').innerHTML = '';
+            totalAmount = 0;
+            document.getElementById('grandTotal').innerText = '0';
+        }
+    </script>
 </body>
 </html>
