@@ -1,1 +1,124 @@
-ERROOR
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ashish Vaghela Photo Editor</title>
+    <style>
+        body { background: #121212; color: white; font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .container { background: #1e1e1e; padding: 20px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); width: 90%; max-width: 800px; text-align: center; }
+        h1 { color: #00d2ff; margin-bottom: 20px; }
+        .editor-layout { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
+        .canvas-area { flex: 1; min-width: 300px; background: #000; border-radius: 10px; overflow: hidden; display: flex; align-items: center; justify-content: center; position: relative; }
+        canvas { max-width: 100%; max-height: 400px; }
+        .controls { width: 250px; display: flex; flex-direction: column; gap: 15px; }
+        .filter-group { display: flex; flex-direction: column; align-items: flex-start; }
+        input[type="range"] { width: 100%; cursor: pointer; }
+        .btn-group { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+        button { padding: 10px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        .btn-primary { background: #00d2ff; color: #000; }
+        .btn-save { background: #32cd32; color: white; }
+        .btn-reset { background: #ff4757; color: white; }
+        input[type="file"] { margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Ashish Vaghela Editor</h1>
+    
+    <input type="file" id="upload" accept="image/*">
+
+    <div class="editor-layout">
+        <div class="canvas-area">
+            <canvas id="canvas"></canvas>
+        </div>
+
+        <div class="controls">
+            <div class="filter-group">
+                <label>Brightness</label>
+                <input type="range" id="brightness" min="0" max="200" value="100">
+            </div>
+            <div class="filter-group">
+                <label>Contrast</label>
+                <input type="range" id="contrast" min="0" max="200" value="100">
+            </div>
+            <div class="filter-group">
+                <label>Saturation</label>
+                <input type="range" id="saturate" min="0" max="200" value="100">
+            </div>
+            <div class="filter-group">
+                <label>Grayscale</label>
+                <input type="range" id="grayscale" min="0" max="100" value="0">
+            </div>
+
+            <div class="btn-group">
+                <button class="btn-primary" onclick="rotate(-90)">Rotate L</button>
+                <button class="btn-primary" onclick="rotate(90)">Rotate R</button>
+                <button class="btn-reset" onclick="resetFilters()">Reset</button>
+                <button class="btn-save" id="download">Download</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    const upload = document.getElementById('upload');
+    const download = document.getElementById('download');
+    
+    let img = new Image();
+    let angle = 0;
+
+    // Filters sliders
+    const sliders = ['brightness', 'contrast', 'saturate', 'grayscale'];
+
+    upload.addEventListener('change', (e) => {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            img.onload = () => {
+                canvas.width = img.width;
+                canvas.height = img.height;
+                applyFilters();
+            };
+            img.src = event.target.result;
+        };
+        reader.readAsDataURL(e.target.files[0]);
+    });
+
+    function applyFilters() {
+        if (!img.src) return;
+        
+        const b = document.getElementById('brightness').value;
+        const c = document.getElementById('contrast').value;
+        const s = document.getElementById('saturate').value;
+        const g = document.getElementById('grayscale').value;
+
+        ctx.filter = `brightness(${b}%) contrast(${c}%) saturate(${s}%) grayscale(${g}%)`;
+        
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(img, 0, 0);
+    }
+
+    sliders.forEach(id => {
+        document.getElementById(id).addEventListener('input', applyFilters);
+    });
+
+    function resetFilters() {
+        sliders.forEach(id => {
+            document.getElementById(id).value = (id === 'grayscale' ? 0 : 100);
+        });
+        applyFilters();
+    }
+
+    download.addEventListener('click', () => {
+        const link = document.createElement('a');
+        link.download = 'AshishVaghela_Edited.png';
+        link.href = canvas.toDataURL();
+        link.click();
+    });
+
+</script>
+</body>
+</html>
